@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#172b3a">
+  <title>Droga do filozofii — gra prawda czy fałsz</title>
+  <style>
+    :root { font-family: system-ui, -apple-system, Segoe UI, sans-serif; color: #172b3a; background: #f4f0e8; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; background: radial-gradient(circle at 85% 5%, #f7dca5 0, transparent 32%), #f4f0e8; }
+    main { max-width: 760px; margin: auto; padding: 44px 20px 60px; }
+    .eyebrow { text-transform: uppercase; letter-spacing: .17em; font-size: .75rem; font-weight: 800; color: #a15a2f; }
+    h1, h2 { font-family: Georgia, 'Times New Roman', serif; line-height: 1.18; }
+    h1 { font-size: clamp(2.15rem, 6vw, 3.6rem); margin: 12px 0; }
+    .intro { color: #50606a; line-height: 1.6; margin-bottom: 30px; }
+    .card { background: #fffdf9; border: 1px solid #e3d9ca; border-radius: 22px; padding: clamp(22px, 5vw, 42px); box-shadow: 0 16px 45px #172b3a12; }
+    .topline { display: flex; justify-content: space-between; gap: 12px; align-items: center; font-weight: 700; font-size: .91rem; }
+    .badge { color: #a15a2f; }
+    .track { height: 8px; border-radius: 99px; background: #eae4da; margin: 18px 0 32px; overflow: hidden; }
+    .fill { height: 100%; width: 0; background: #b96639; border-radius: inherit; transition: width .25s; }
+    h2 { font-size: clamp(1.45rem, 3.5vw, 2rem); margin: 0 0 28px; }
+    .choices { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    button { font: inherit; cursor: pointer; border-radius: 13px; min-height: 56px; font-weight: 750; }
+    .choice { background: #f7f3ed; border: 2px solid #dfd5c6; color: #172b3a; font-size: 1.08rem; }
+    .choice:hover:not(:disabled), .choice:focus-visible { border-color: #b96639; background: #fff3e2; }
+    .choice:disabled { cursor: default; }
+    .choice.correct { border-color: #328064; background: #e4f4ed; }
+    .choice.incorrect { border-color: #ba4b49; background: #fff0ee; }
+    .feedback { border-left: 4px solid #328064; padding: 10px 0 10px 16px; margin-top: 26px; line-height: 1.55; }
+    .feedback.wrong { border-color: #ba4b49; }
+    .feedback strong { display: block; margin-bottom: 5px; }
+    .actions { margin-top: 25px; }
+    .primary { border: 0; background: #172b3a; color: white; padding: 0 26px; }
+    .primary:hover, .primary:focus-visible { background: #31506a; }
+    .muted { color: #50606a; line-height: 1.55; }
+    .review { margin: 26px 0 0; padding-left: 22px; line-height: 1.55; }
+    .review li { margin: 0 0 14px; }
+    .review strong { color: #a15a2f; }
+    .hidden { display: none; }
+    footer { margin-top: 22px; color: #64717a; font-size: .85rem; text-align: center; }
+    @media (max-width: 480px) { .choices { grid-template-columns: 1fr; } main { padding-top: 25px; } }
+    @media (prefers-reduced-motion: reduce) { .fill { transition: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="eyebrow">Wykład 1 · powtórka</div>
+    <h1>Droga do filozofii</h1>
+    <p class="intro">Od naturalnego i naukowego do filozoficznego obrazu świata. Oceń 15 stwierdzeń. Po każdej odpowiedzi zobaczysz krótkie wyjaśnienie.</p>
+    <section class="card" aria-label="Gra prawda czy fałsz">
+      <div id="quiz">
+        <div class="topline"><span id="counter"></span><span class="badge" id="score"></span></div>
+        <div class="track" role="progressbar" aria-label="Postęp gry" aria-valuemin="0" aria-valuemax="15" aria-valuenow="0" id="progress"><div class="fill" id="fill"></div></div>
+        <h2 id="question"></h2>
+        <div class="choices" id="choices">
+          <button type="button" class="choice" data-answer="true">Prawda</button>
+          <button type="button" class="choice" data-answer="false">Fałsz</button>
+        </div>
+        <div id="feedback" class="feedback hidden" role="status" aria-live="polite"></div>
+        <div class="actions"><button type="button" class="primary hidden" id="next">Następne pytanie</button></div>
+      </div>
+      <div id="result" class="hidden" aria-live="polite">
+        <div class="eyebrow">Koniec gry</div>
+        <h2 id="result-title"></h2>
+        <p class="muted" id="result-text"></p>
+        <div id="review-wrap" class="hidden"><h3>Wróć do tych stwierdzeń</h3><ol class="review" id="review"></ol></div>
+        <div class="actions"><button type="button" class="primary" id="restart">Zagraj ponownie</button></div>
+      </div>
+    </section>
+    <footer>Na podstawie wykładu „Droga do filozofii. Od naturalnego i naukowego do filozoficznego obrazu świata”.</footer>
+  </main>
+  <script>
+    'use strict';
+    const items = [
+      { q: 'Światopogląd obejmuje przekonania i oceny, za pomocą których człowiek interpretuje świat oraz własne życie.', a: true, why: 'To całościowa wizja rzeczywistości, obejmująca także pytania o sens i cele życia.' },
+      { q: 'Naturalny obraz świata powstaje wyłącznie na podstawie wrażeń wzrokowych.', a: false, why: 'Wpływają na niego także inne zmysły, wyobrażenia, doświadczenia wewnętrzne i sądy.' },
+      { q: 'W naturalnym obrazie świata rzeczy postrzegamy jako materialne, istniejące w czasie i przestrzeni oraz powiązane ze sobą.', a: true, why: 'To jedna z podstawowych cech naturalnego obrazu świata opisanych w wykładzie.' },
+      { q: 'Wrażenia dotykowe pomagają nam ukształtować przekonanie, że rzeczy istnieją niezależnie od nas.', a: true, why: 'Doświadczenie oporu rzeczy wzmacnia przekonanie o ich odrębności i realności.' },
+      { q: 'Wyobrażenia odtwórcze powstają przez swobodne łączenie elementów w wyobraźni, a wytwórcze są przywoływane z pamięci.', a: false, why: 'Jest odwrotnie: odtwórcze przywołujemy z pamięci, a wytwórcze tworzymy w wyobraźni.' },
+      { q: 'Na sposób postrzegania rzeczy mogą wpływać wcześniejsze doświadczenia i wyobrażenia.', a: true, why: 'Dawne doświadczenia łączą się z bieżącymi wrażeniami i pomagają rozpoznać przedmiot.' },
+      { q: 'Rozpoznanie widzianego przedmiotu jako „domu” wymaga również zaklasyfikowania go za pomocą pojęcia.', a: true, why: 'Samo wrażenie nie wystarcza: nazywając przedmiot domem, wydajemy sąd i przypisujemy go do klasy.' },
+      { q: 'Naturalny obraz świata jest jednakowy w każdym szczególe u wszystkich ludzi.', a: false, why: 'Ma wspólną osnowę, lecz szczegóły zależą między innymi od zmysłów, doświadczenia i kultury.' },
+      { q: 'Wygląd przedmiotu może się zmieniać zależnie od perspektywy, odległości lub otoczenia, w którym go oglądamy.', a: true, why: 'Wykład ilustruje to między innymi wieżą widzianą z daleka i wiosłem częściowo zanurzonym w wodzie.' },
+      { q: 'Naturalny obraz świata daje pełną odpowiedź na pytania o początek i sens istnienia świata.', a: false, why: 'Opiera się na tym, co postrzegamy, i nie rozstrzyga takich pytań.' },
+      { q: 'Nauka zajmuje się także zjawiskami i obiektami niedostępnymi bezpośredniej obserwacji zmysłowej.', a: true, why: 'Może badać na przykład obiekty zbyt małe, odległe lub ukryte, korzystając z metod pośrednich.' },
+      { q: 'W nauce wykrycie błędu może prowadzić do skorygowania nawet całej teorii.', a: true, why: 'Sprawdzanie i poprawianie twierdzeń jest ważnym elementem pracy naukowej.' },
+      { q: 'Intersubiektywna weryfikowalność oznacza, że twierdzenie można sprawdzić jedynie na podstawie osobistego przeżycia jego autora.', a: false, why: 'Oznacza dostępność sprawdzenia dla więcej niż jednego podmiotu poznającego.' },
+      { q: 'Naukowy obraz świata kładzie nacisk między innymi na pomiar, uogólnianie i tworzenie spójnych wyjaśnień.', a: true, why: 'Nauka dąży do precyzji, formułowania praw oraz wiązania wyników w spójny system.' },
+      { q: 'Pytanie o to, który obraz świata — naturalny czy naukowy — jest trafniejszy, prowadzi do filozoficznych rozważań nad naturą bytu i poznania.', a: true, why: 'Wykład przedstawia filozofię jako drogę do zbadania podstaw obu obrazów świata.' }
+    ];
+    const $ = id => document.getElementById(id);
+    const buttons = [...document.querySelectorAll('.choice')];
+    let index = 0, points = 0, mistakes = [], answered = false;
+
+    function showQuestion() {
+      answered = false;
+      $('counter').textContent = `Pytanie ${index + 1} z ${items.length}`;
+      $('score').textContent = `Punkty: ${points}`;
+      $('question').textContent = items[index].q;
+      $('progress').setAttribute('aria-valuenow', index);
+      $('fill').style.width = `${index / items.length * 100}%`;
+      $('feedback').className = 'feedback hidden';
+      $('feedback').replaceChildren();
+      $('next').classList.add('hidden');
+      for (const button of buttons) { button.disabled = false; button.className = 'choice'; }
+      buttons[0].focus();
+    }
+
+    function answer(value) {
+      if (answered) return;
+      answered = true;
+      const item = items[index];
+      const correct = value === item.a;
+      if (correct) points++; else mistakes.push(index);
+      for (const button of buttons) {
+        button.disabled = true;
+        if ((button.dataset.answer === 'true') === item.a) button.classList.add('correct');
+        else if ((button.dataset.answer === 'true') === value) button.classList.add('incorrect');
+      }
+      const title = document.createElement('strong');
+      title.textContent = correct ? 'Dobrze!' : `Nie tym razem. Poprawna odpowiedź: ${item.a ? 'prawda' : 'fałsz'}.`;
+      const detail = document.createElement('span');
+      detail.textContent = item.why;
+      $('feedback').replaceChildren(title, detail);
+      $('feedback').className = `feedback${correct ? '' : ' wrong'}`;
+      $('score').textContent = `Punkty: ${points}`;
+      $('progress').setAttribute('aria-valuenow', index + 1);
+      $('fill').style.width = `${(index + 1) / items.length * 100}%`;
+      $('next').textContent = index === items.length - 1 ? 'Zobacz wynik' : 'Następne pytanie';
+      $('next').classList.remove('hidden');
+      $('next').focus();
+    }
+
+    function finish() {
+      $('quiz').classList.add('hidden');
+      $('result').classList.remove('hidden');
+      $('result-title').textContent = `Twój wynik: ${points}/${items.length}`;
+      $('result-text').textContent = points === items.length ? 'Świetnie! Wszystkie odpowiedzi są poprawne.' : `Poprawnych odpowiedzi: ${points}. Możesz przejrzeć pomyłki i spróbować ponownie.`;
+      const list = $('review');
+      list.replaceChildren();
+      for (const i of mistakes) {
+        const li = document.createElement('li');
+        const label = document.createElement('strong');
+        label.textContent = `Pytanie ${i + 1} · ${items[i].a ? 'Prawda' : 'Fałsz'}. `;
+        li.append(label, document.createTextNode(items[i].q + ' ' + items[i].why));
+        list.append(li);
+      }
+      $('review-wrap').classList.toggle('hidden', mistakes.length === 0);
+      $('result-title').setAttribute('tabindex', '-1');
+      $('result-title').focus();
+    }
+
+    for (const button of buttons) button.addEventListener('click', () => answer(button.dataset.answer === 'true'));
+    $('next').addEventListener('click', () => { index++; if (index === items.length) finish(); else showQuestion(); });
+    $('restart').addEventListener('click', () => { index = 0; points = 0; mistakes = []; $('result').classList.add('hidden'); $('quiz').classList.remove('hidden'); showQuestion(); });
+    showQuestion();
+  </script>
+</body>
+</html>

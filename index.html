@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#172b3a">
+  <title>Gry do wykładów z filozofii</title>
+  <style>
+    :root { font-family: system-ui, -apple-system, Segoe UI, sans-serif; color: #172b3a; background: #f4f0e8; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; background: radial-gradient(circle at 85% 5%, #f7dca5 0, transparent 32%), #f4f0e8; }
+    main { max-width: 840px; margin: auto; padding: clamp(32px, 7vw, 80px) 22px; }
+    .eyebrow { text-transform: uppercase; letter-spacing: .17em; font-size: .75rem; font-weight: 800; color: #a15a2f; }
+    h1, h2 { font-family: Georgia, 'Times New Roman', serif; line-height: 1.18; }
+    h1 { font-size: clamp(2.3rem, 7vw, 4.5rem); margin: 15px 0; }
+    .intro { color: #50606a; font-size: 1.1rem; line-height: 1.6; max-width: 650px; margin-bottom: 38px; }
+    .card { display: block; text-decoration: none; color: inherit; background: #fffdf9; border: 2px solid #e3d9ca; border-radius: 22px; padding: clamp(24px, 5vw, 38px); box-shadow: 0 16px 45px #172b3a12; transition: transform .15s, border-color .15s; }
+    .card:hover, .card:focus-visible { border-color: #b96639; transform: translateY(-3px); }
+    .card h2 { font-size: clamp(1.45rem, 4vw, 2rem); margin: 8px 0 10px; }
+    .card p { color: #50606a; line-height: 1.55; margin: 0 0 24px; }
+    .link { font-weight: 800; color: #a15a2f; }
+    footer { margin-top: 28px; color: #64717a; font-size: .9rem; }
+    @media (prefers-reduced-motion: reduce) { .card { transition: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="eyebrow">Powtórka po wykładzie</div>
+    <h1>Gry do wykładów z filozofii</h1>
+    <p class="intro">Wybierz wykład i sprawdź, ile pamiętasz. Każda gra działa na telefonie i pokazuje wyjaśnienia odpowiedzi.</p>
+    <a class="card" href="w1/">
+      <div class="eyebrow">Wykład 1 · 15 pytań</div>
+      <h2>Droga do filozofii</h2>
+      <p>Od naturalnego i naukowego do filozoficznego obrazu świata. Gra prawda czy fałsz.</p>
+      <span class="link">Rozpocznij grę →</span>
+    </a>
+    <footer>Kolejne gry pojawią się tu po następnych wykładach.</footer>
+  </main>
+</body>
+</html>
