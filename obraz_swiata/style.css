@@ -124,3 +124,57 @@ h3 { margin: 0 0 8px; }
   .mini-row { grid-template-columns:1fr; gap:5px; }
   .mini-value { text-align:left; }
 }
+
+
+/* Panel prowadzącego i udostępnianie sesji */
+.session-info {
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  margin: 18px 0 4px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(56,189,248,.10);
+  border: 1px solid rgba(56,189,248,.24);
+  color: #bae6fd;
+}
+.session-info span { color: #94a3b8; font-size: .88rem; }
+.session-info strong { letter-spacing: .06em; }
+
+.teacher-share-grid {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 24px;
+  align-items: center;
+  margin-top: 18px;
+}
+.qr-card {
+  width: 252px;
+  min-height: 252px;
+  display: grid;
+  place-items: center;
+  background: #fff;
+  border-radius: 20px;
+  padding: 16px;
+}
+#studentQr img, #studentQr canvas {
+  display: block;
+  max-width: 220px;
+  width: 100%;
+  height: auto;
+}
+.link-input {
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: .92rem;
+}
+button:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+@media (max-width: 720px) {
+  .teacher-share-grid { grid-template-columns: 1fr; }
+  .qr-card { margin: 0 auto; }
+}
