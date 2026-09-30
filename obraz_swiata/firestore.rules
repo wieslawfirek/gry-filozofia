@@ -1,0 +1,20 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /sessions/{sessionId}/responses/{userId} {
+      // Każdy anonimowo zalogowany uczestnik może odczytać anonimowe wyniki sesji.
+      allow read: if request.auth != null;
+
+      // Jeden zapis na użytkownika w danej sesji. Brak późniejszej edycji i kasowania.
+      allow create: if request.auth != null
+                    && request.auth.uid == userId
+                    && request.resource.data.keys().hasOnly([
+                      'createdAt', 'profile', 'scores', 'answers'
+                    ])
+                    && request.resource.data.answers is list
+                    && request.resource.data.answers.size() == 15;
+
+      allow update, delete: if false;
+    }
+  }
+}

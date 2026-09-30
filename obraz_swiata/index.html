@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#111827" />
+  <title>Jak naprawdę widzisz świat?</title>
+  <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Droga do filozofii</p>
+        <h1>Jak naprawdę widzisz świat?</h1>
+      </div>
+      <button id="teacherShortcut" class="ghost-btn" type="button">Widok prowadzącego</button>
+    </header>
+
+    <section id="setupScreen" class="card screen active">
+      <div class="hero-icon">◉</div>
+      <h2>Krótki test intuicji o świecie</h2>
+      <p class="lead">Nie ma tu odpowiedzi „dobrych” i „złych”. Wybieraj tę, która wydaje Ci się najbardziej naturalna — bez długiego zastanawiania się.</p>
+
+      <label class="field-label" for="sessionCode">Kod grupy / zajęć</label>
+      <input id="sessionCode" class="text-input" maxlength="32" autocomplete="off" placeholder="np. FILOZOFIA-W1" />
+      <p class="hint">Wszyscy w sali wpisują ten sam kod. Dzięki temu wyniki Waszej grupy będą liczone razem.</p>
+
+      <div class="actions">
+        <button id="startBtn" class="primary-btn" type="button">Rozpocznij test</button>
+        <button id="teacherBtn" class="secondary-btn" type="button">Pokaż wyniki grupy</button>
+      </div>
+      <p id="configWarning" class="notice warning hidden"></p>
+    </section>
+
+    <section id="quizScreen" class="card screen">
+      <div class="progress-row">
+        <span id="questionCounter">Pytanie 1 z 15</span>
+        <span id="sessionBadge" class="badge"></span>
+      </div>
+      <div class="progress-track"><div id="progressBar" class="progress-bar"></div></div>
+      <h2 id="questionText" class="question"></h2>
+      <div id="answersList" class="answers"></div>
+      <p class="microcopy">Wybierz jedną odpowiedź. Kolejność odpowiedzi jest losowa.</p>
+    </section>
+
+    <section id="personalResultScreen" class="card screen">
+      <p class="eyebrow">Twój wynik</p>
+      <h2 id="profileTitle"></h2>
+      <p id="profileDescription" class="lead"></p>
+      <div id="personalBars" class="bars"></div>
+      <div class="actions">
+        <button id="groupResultsBtn" class="primary-btn" type="button">Zobacz wynik całej grupy</button>
+        <button id="restartBtn" class="secondary-btn" type="button">Wróć na początek</button>
+      </div>
+      <p class="hint">Twój wynik jest zapisany anonimowo dla tej sesji. Z jednego urządzenia wynik można wysłać tylko raz.</p>
+    </section>
+
+    <section id="groupScreen" class="card screen wide-card">
+      <div class="results-header">
+        <div>
+          <p class="eyebrow">Wyniki na żywo</p>
+          <h2>Obraz świata w tej grupie</h2>
+          <p id="groupMeta" class="lead compact"></p>
+        </div>
+        <button id="backHomeBtn" class="ghost-btn" type="button">← Strona główna</button>
+      </div>
+
+      <div class="summary-grid" id="groupSummary"></div>
+
+      <div class="section-heading">
+        <h3>Rozkład odpowiedzi na każde pytanie</h3>
+        <p>Wyniki aktualizują się automatycznie, gdy kolejne osoby kończą test.</p>
+      </div>
+      <div id="questionBreakdown" class="question-breakdown"></div>
+
+      <div class="teacher-tools hidden" id="teacherTools">
+        <h3>Narzędzia prowadzącego</h3>
+        <div class="actions left">
+          <button id="copyStudentLinkBtn" class="secondary-btn" type="button">Kopiuj link dla studentów</button>
+        </div>
+        <p id="copyStatus" class="hint"></p>
+      </div>
+    </section>
+
+    <section id="errorScreen" class="card screen">
+      <h2>Nie udało się połączyć z bazą wyników</h2>
+      <p id="errorText" class="lead"></p>
+      <button id="errorBackBtn" class="primary-btn" type="button">Wróć</button>
+    </section>
+  </main>
+
+  <footer class="footer">Anonimowy test dydaktyczny • GitHub Pages + Firebase</footer>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
