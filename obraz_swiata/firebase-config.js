@@ -1,5 +1,5 @@
-export const firebaseConfig = {
-  apiKey: "AIzaSyDBK5h4fAkycbsQNCxzm9RLcxD0R5SwW1g",
+const firebaseConfig = {
+  apiKey: "AIzaSyDBK5h4fAkvcbsQNCxzm9RLcxD0R5SwW1g",
   authDomain: "gry-filozofia.firebaseapp.com",
   projectId: "gry-filozofia",
   storageBucket: "gry-filozofia.firebasestorage.app",
