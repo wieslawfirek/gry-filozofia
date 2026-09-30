@@ -1,14 +1,8 @@
-// 1) Utwórz projekt w Firebase.
-// 2) Włącz Authentication > Sign-in method > Anonymous.
-// 3) Utwórz Firestore Database.
-// 4) Dodaj aplikację Web i wklej poniżej jej konfigurację.
-// Szczegóły: README.md
-
 export const firebaseConfig = {
-  apiKey: "WSTAW_TUTAJ",
-  authDomain: "WSTAW_TUTAJ",
-  projectId: "WSTAW_TUTAJ",
-  storageBucket: "WSTAW_TUTAJ",
-  messagingSenderId: "WSTAW_TUTAJ",
-  appId: "WSTAW_TUTAJ"
+  apiKey: "AIzaSyDBK5h4fAkycbsQNCxzm9RLcxD0R5SwW1g",
+  authDomain: "gry-filozofia.firebaseapp.com",
+  projectId: "gry-filozofia",
+  storageBucket: "gry-filozofia.firebasestorage.app",
+  messagingSenderId: "1058662034494",
+  appId: "1:1058662034494:web:7aff2a5215aec146fdf56f"
 };
