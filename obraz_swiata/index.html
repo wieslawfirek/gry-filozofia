@@ -22,14 +22,29 @@
       <h2>Krótki test intuicji o świecie</h2>
       <p class="lead">Nie ma tu odpowiedzi „dobrych” i „złych”. Wybieraj tę, która wydaje Ci się najbardziej naturalna — bez długiego zastanawiania się.</p>
 
-      <label class="field-label" for="sessionCode">Kod grupy / zajęć</label>
-      <input id="sessionCode" class="text-input" maxlength="32" autocomplete="off" placeholder="np. FILOZOFIA-W1" />
-      <p class="hint">Wszyscy w sali wpisują ten sam kod. Dzięki temu wyniki Waszej grupy będą liczone razem.</p>
+      <div id="studentSessionInfo" class="session-info hidden">
+        <span>Sesja</span>
+        <strong id="studentSessionName"></strong>
+      </div>
+      <input id="sessionCode" type="hidden" />
 
       <div class="actions">
         <button id="startBtn" class="primary-btn" type="button">Rozpocznij test</button>
       </div>
+      <p id="studentAccessWarning" class="notice warning hidden">Ten test uruchamia się z linku lub kodu QR wygenerowanego przez prowadzącego.</p>
       <p id="configWarning" class="notice warning hidden"></p>
+    </section>
+
+    <section id="teacherScreen" class="card screen">
+      <p class="eyebrow">Panel prowadzącego</p>
+      <h2>Utwórz lub otwórz sesję</h2>
+      <p class="lead">Wpisz nazwę grupy lub zajęć. Aplikacja utworzy osobny link i kod QR dla studentów oraz otworzy wyniki tej sesji na żywo.</p>
+      <label class="field-label" for="teacherSessionCode">Nazwa sesji</label>
+      <input id="teacherSessionCode" class="text-input" maxlength="32" autocomplete="off" placeholder="np. FILOZOFIA-W1" />
+      <p class="hint">Dla każdej grupy lub terminu używaj innej nazwy, aby wyniki się nie mieszały.</p>
+      <div class="actions">
+        <button id="createSessionBtn" class="primary-btn" type="button">Utwórz / otwórz sesję</button>
+      </div>
     </section>
 
     <section id="quizScreen" class="card screen">
@@ -61,7 +76,7 @@
           <h2>Obraz świata w tej grupie</h2>
           <p id="groupMeta" class="lead compact"></p>
         </div>
-        <button id="backHomeBtn" class="ghost-btn" type="button">← Strona główna</button>
+        <button id="backHomeBtn" class="ghost-btn" type="button">← Panel prowadzącego</button>
       </div>
 
       <div class="summary-grid" id="groupSummary"></div>
@@ -73,11 +88,23 @@
       <div id="questionBreakdown" class="question-breakdown"></div>
 
       <div class="teacher-tools hidden" id="teacherTools">
-        <h3>Narzędzia prowadzącego</h3>
-        <div class="actions left">
-          <button id="copyStudentLinkBtn" class="secondary-btn" type="button">Kopiuj link dla studentów</button>
+        <h3>Link dla studentów</h3>
+        <p class="hint">Wyświetl kod QR na ekranie albo skopiuj link. Studenci po wejściu od razu trafią do właściwej sesji.</p>
+        <div class="teacher-share-grid">
+          <div class="qr-card">
+            <div id="studentQr"></div>
+          </div>
+          <div class="share-details">
+            <label class="field-label" for="studentLink">Adres dla studentów</label>
+            <input id="studentLink" class="text-input link-input" readonly />
+            <div class="actions left">
+              <button id="copyStudentLinkBtn" class="secondary-btn" type="button">Kopiuj link</button>
+              <button id="downloadQrBtn" class="secondary-btn" type="button">Pobierz QR</button>
+              <button id="newSessionBtn" class="ghost-btn" type="button">Nowa sesja</button>
+            </div>
+            <p id="copyStatus" class="hint"></p>
+          </div>
         </div>
-        <p id="copyStatus" class="hint"></p>
       </div>
     </section>
 
@@ -90,6 +117,7 @@
 
   <footer class="footer">Anonimowy test dydaktyczny • GitHub Pages + Firebase</footer>
 
-  <script type="module" src="app.js?v=3"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+  <script type="module" src="app.js?v=4"></script>
 </body>
 </html>
