@@ -12,7 +12,7 @@ import {
   serverTimestamp,
   onSnapshot
 } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
-import { firebaseConfig } from "./firebase-config.js?v=2";
+import { firebaseConfig } from "./firebase-config.js?v=3";
 
 const TYPE = {
   natural: "Naturalny",
@@ -327,8 +327,13 @@ function renderGroup(summary) {
   });
 }
 
-async function openGroupResults(teacherMode=false) {
-  state.teacherMode = teacherMode;
+function isTeacherView() {
+  return new URLSearchParams(location.search).get("view") === "teacher";
+}
+
+async function openGroupResults() {
+  if (!isTeacherView()) return;
+  state.teacherMode = true;
   const raw = el("sessionCode").value || state.session;
   const session = normalizeSession(raw);
   if (!session) { alert("Wpisz kod grupy / zajęć."); return; }
@@ -338,7 +343,7 @@ async function openGroupResults(teacherMode=false) {
   try {
     await ensureAuth();
     showScreen("groupScreen");
-    el("teacherTools").classList.toggle("hidden", !teacherMode);
+    el("teacherTools").classList.remove("hidden");
     if (state.unsubscribe) state.unsubscribe();
     const ref = collection(state.db, "sessions", state.session, "responses");
     state.unsubscribe = onSnapshot(ref, snap => {
@@ -360,8 +365,7 @@ function startQuiz() {
   state.session = session;
   const already = localStorage.getItem(`submitted:${session}`) === "1";
   if (already) {
-    const go = confirm("Na tym urządzeniu wynik dla tej sesji był już wysłany. Czy chcesz tylko zobaczyć wyniki grupy?");
-    if (go) openGroupResults(false);
+    alert("Na tym urządzeniu wynik dla tej sesji został już wysłany.");
     return;
   }
   state.current = 0;
@@ -374,9 +378,12 @@ function startQuiz() {
 function applyUrlParams() {
   const params = new URLSearchParams(location.search);
   const session = normalizeSession(params.get("session") || "");
-  if (session) el("sessionCode").value = session;
+  if (session) {
+    el("sessionCode").value = session;
+    el("sessionCode").readOnly = true;
+  }
   if (params.get("view") === "teacher" && session) {
-    setTimeout(() => openGroupResults(true), 50);
+    setTimeout(() => openGroupResults(), 50);
   }
 }
 
@@ -392,9 +399,6 @@ function initFirebase() {
 }
 
 el("startBtn").addEventListener("click", startQuiz);
-el("teacherBtn").addEventListener("click", () => openGroupResults(true));
-el("teacherShortcut").addEventListener("click", () => openGroupResults(true));
-el("groupResultsBtn").addEventListener("click", () => openGroupResults(false));
 el("restartBtn").addEventListener("click", () => showScreen("setupScreen"));
 el("backHomeBtn").addEventListener("click", () => { if (state.unsubscribe) state.unsubscribe(); showScreen("setupScreen"); });
 el("errorBackBtn").addEventListener("click", () => showScreen("setupScreen"));
