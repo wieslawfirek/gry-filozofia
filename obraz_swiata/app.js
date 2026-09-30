@@ -12,7 +12,7 @@ import {
   serverTimestamp,
   onSnapshot
 } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
-import { firebaseConfig } from "./firebase-config.js?v=3";
+import { firebaseConfig } from "./firebase-config.js?v=4";
 
 const TYPE = {
   natural: "Naturalny",
@@ -164,7 +164,7 @@ const state = {
 };
 
 const el = id => document.getElementById(id);
-const screens = ["setupScreen","quizScreen","personalResultScreen","groupScreen","errorScreen"];
+const screens = ["setupScreen","teacherScreen","quizScreen","personalResultScreen","groupScreen","errorScreen"];
 
 function showScreen(id) {
   screens.forEach(s => el(s).classList.toggle("active", s === id));
@@ -173,6 +173,76 @@ function showScreen(id) {
 
 function normalizeSession(value) {
   return value.trim().toUpperCase().replace(/[^A-Z0-9_-]/g, "-").replace(/-+/g, "-").slice(0,32);
+}
+
+function getStudentUrl(session) {
+  const u = new URL(location.href);
+  u.search = "";
+  u.hash = "";
+  u.searchParams.set("session", session);
+  return u.toString();
+}
+
+function getTeacherUrl(session="") {
+  const u = new URL(location.href);
+  u.search = "";
+  u.hash = "";
+  u.searchParams.set("view", "teacher");
+  if (session) u.searchParams.set("session", session);
+  return u.toString();
+}
+
+function renderStudentAccess(session) {
+  el("sessionCode").value = session || "";
+  if (session) {
+    el("studentSessionName").textContent = session;
+    el("studentSessionInfo").classList.remove("hidden");
+    el("studentAccessWarning").classList.add("hidden");
+    el("startBtn").disabled = false;
+  } else {
+    el("studentSessionInfo").classList.add("hidden");
+    el("studentAccessWarning").classList.remove("hidden");
+    el("startBtn").disabled = true;
+  }
+}
+
+function renderTeacherShare() {
+  const link = getStudentUrl(state.session);
+  el("studentLink").value = link;
+  const holder = el("studentQr");
+  holder.innerHTML = "";
+  if (window.QRCode) {
+    new window.QRCode(holder, {
+      text: link,
+      width: 220,
+      height: 220,
+      correctLevel: window.QRCode.CorrectLevel.H
+    });
+  }
+}
+
+function openTeacherPanel() {
+  if (state.unsubscribe) {
+    state.unsubscribe();
+    state.unsubscribe = null;
+  }
+  history.replaceState(null, "", getTeacherUrl());
+  state.session = "";
+  el("teacherSessionCode").value = "";
+  showScreen("teacherScreen");
+  setTimeout(() => el("teacherSessionCode").focus(), 50);
+}
+
+function createTeacherSession() {
+  const session = normalizeSession(el("teacherSessionCode").value);
+  if (!session) {
+    alert("Wpisz nazwę sesji.");
+    return;
+  }
+  state.session = session;
+  el("teacherSessionCode").value = session;
+  history.replaceState(null, "", getTeacherUrl(session));
+  openGroupResults();
 }
 
 function configLooksReady() {
@@ -336,7 +406,7 @@ async function openGroupResults() {
   state.teacherMode = true;
   const raw = el("sessionCode").value || state.session;
   const session = normalizeSession(raw);
-  if (!session) { alert("Wpisz kod grupy / zajęć."); return; }
+  if (!session) { alert("Otwórz test z linku lub kodu QR od prowadzącego."); return; }
   state.session = session;
   el("sessionCode").value = session;
 
@@ -344,6 +414,7 @@ async function openGroupResults() {
     await ensureAuth();
     showScreen("groupScreen");
     el("teacherTools").classList.remove("hidden");
+    renderTeacherShare();
     if (state.unsubscribe) state.unsubscribe();
     const ref = collection(state.db, "sessions", state.session, "responses");
     state.unsubscribe = onSnapshot(ref, snap => {
@@ -378,13 +449,22 @@ function startQuiz() {
 function applyUrlParams() {
   const params = new URLSearchParams(location.search);
   const session = normalizeSession(params.get("session") || "");
-  if (session) {
-    el("sessionCode").value = session;
-    el("sessionCode").readOnly = true;
+  const teacher = params.get("view") === "teacher";
+
+  if (teacher) {
+    if (session) {
+      state.session = session;
+      el("teacherSessionCode").value = session;
+      setTimeout(() => openGroupResults(), 50);
+    } else {
+      showScreen("teacherScreen");
+      setTimeout(() => el("teacherSessionCode").focus(), 50);
+    }
+    return;
   }
-  if (params.get("view") === "teacher" && session) {
-    setTimeout(() => openGroupResults(), 50);
-  }
+
+  renderStudentAccess(session);
+  showScreen("setupScreen");
 }
 
 function initFirebase() {
@@ -400,19 +480,29 @@ function initFirebase() {
 
 el("startBtn").addEventListener("click", startQuiz);
 el("restartBtn").addEventListener("click", () => showScreen("setupScreen"));
-el("backHomeBtn").addEventListener("click", () => { if (state.unsubscribe) state.unsubscribe(); showScreen("setupScreen"); });
-el("errorBackBtn").addEventListener("click", () => showScreen("setupScreen"));
-el("sessionCode").addEventListener("keydown", e => { if (e.key === "Enter") startQuiz(); });
+el("backHomeBtn").addEventListener("click", openTeacherPanel);
+el("errorBackBtn").addEventListener("click", () => isTeacherView() ? openTeacherPanel() : showScreen("setupScreen"));
+el("createSessionBtn").addEventListener("click", createTeacherSession);
+el("teacherSessionCode").addEventListener("keydown", e => { if (e.key === "Enter") createTeacherSession(); });
+el("newSessionBtn").addEventListener("click", openTeacherPanel);
 el("copyStudentLinkBtn").addEventListener("click", async () => {
-  const u = new URL(location.href);
-  u.search = "";
-  u.searchParams.set("session", state.session);
+  const link = getStudentUrl(state.session);
   try {
-    await navigator.clipboard.writeText(u.toString());
+    await navigator.clipboard.writeText(link);
     el("copyStatus").textContent = "Link dla studentów skopiowany do schowka.";
   } catch {
-    el("copyStatus").textContent = u.toString();
+    el("copyStatus").textContent = link;
   }
+});
+el("downloadQrBtn").addEventListener("click", () => {
+  const canvas = el("studentQr").querySelector("canvas");
+  const img = el("studentQr").querySelector("img");
+  const href = canvas ? canvas.toDataURL("image/png") : img?.src;
+  if (!href) return;
+  const a = document.createElement("a");
+  a.href = href;
+  a.download = `QR_${state.session}.png`;
+  a.click();
 });
 
 initFirebase();
