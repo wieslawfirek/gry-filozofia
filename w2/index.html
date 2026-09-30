@@ -9,7 +9,7 @@
 </head>
 <body><main>
 <header><a href="../">← Wszystkie gry</a><span>Wykład 2 · dr Wiesław Firek</span></header>
-<section id="intro" class="card"><div class="tag">Test wiedzy po wykładzie</div><h1>Czym jest filozofia?</h1><p class="muted">Działy filozofii i filozofia człowieka. Sprawdź, czy rozpoznajesz pojęcia i potrafisz przyporządkować pytania do odpowiednich dziedzin.</p><div class="pills"><span class="pill">12 pytań</span><span class="pill">Jedna poprawna odpowiedź</span><span class="pill">Bez limitu czasu</span></div><p>Wybierz odpowiedź i kliknij „Sprawdź”. Po każdym pytaniu zobaczysz wyjaśnienie, a na końcu wynik i przegląd odpowiedzi. Każda poprawna odpowiedź to 1 punkt.</p><button id="start" class="primary">Rozpocznij test →</button></section>
+<section id="intro" class="card"><div class="tag">Test wiedzy po wykładzie</div><h1>Czym jest filozofia?</h1><p class="muted">Działy filozofii i filozofia człowieka. Porównaj pojęcia, oceń argumenty i zastosuj wiedzę do konkretnych sytuacji. Pytania wymagają uważnego rozróżniania podobnych odpowiedzi.</p><div class="pills"><span class="pill">12 pytań</span><span class="pill">Jedna poprawna odpowiedź</span><span class="pill">Bez limitu czasu</span></div><p>Wybierz odpowiedź i kliknij „Sprawdź”. Po każdym pytaniu zobaczysz wyjaśnienie, a na końcu wynik i przegląd odpowiedzi. Każda poprawna odpowiedź to 1 punkt.</p><button id="start" class="primary">Rozpocznij test →</button></section>
 <section id="quiz" class="card" hidden><div class="meta"><span id="counter"></span><span id="points"></span></div><div class="progress" role="progressbar" aria-label="Postęp testu" aria-valuemin="0" aria-valuemax="12" aria-valuenow="0"><span id="bar"></span></div><div id="topic" class="tag"></div><h2 id="question" tabindex="-1"></h2><div id="options" class="options" role="group" aria-labelledby="question"></div><div id="feedback" class="feedback" role="status" aria-live="polite" hidden></div><div class="actions"><button id="check" class="primary" disabled>Sprawdź odpowiedź</button><button id="next" class="primary" hidden>Następne pytanie →</button></div></section>
 <section id="result" class="card" hidden><div class="tag">Podsumowanie</div><h1 id="resultTitle" tabindex="-1">Twój wynik</h1><div id="score" class="big"></div><p id="summary"></p><p id="repeat" class="muted"></p><div class="actions"><button id="restart" class="primary">Spróbuj ponownie</button><button id="print" class="secondary">Drukuj / zapisz jako PDF</button></div><h2>Twoje odpowiedzi</h2><div id="review"></div></section>
 <footer>Na podstawie materiałów „W2. Czym jest filozofia. Działy filozofii. Filozofia człowieka” oraz „Działy filozofii”. Test służy powtórce. Wynik nie jest wysyłany ani zapisywany na serwerze.</footer>
@@ -17,18 +17,150 @@
 </main><script>
 'use strict';
 const bank = [
-{topic:'Pojęcie filozofii',q:'Co oznacza słowo „filozofia” zgodnie z jego grecką etymologią?',o:['Miłość mądrości i dążenie do wiedzy','Umiejętność przekonywania do własnych opinii','Znajomość praw przyrody i metod pomiaru','Posiadanie pełnej wiedzy o rzeczywistości'],a:0,e:'Phileo oznacza miłowanie lub dążenie, a sophia — mądrość. Filozofia oznacza miłość mądrości, nie deklarację posiadania pełnej wiedzy.'},
-{topic:'Cel filozofii',q:'Student zgłębia problem wyłącznie dlatego, że chce go zrozumieć. Wiedza jest dla niego celem samym w sobie. Jaką wartość ma w tej sytuacji wiedza?',o:['Instrumentalną','Autoteliczną','Handlową','Użytkową'],a:1,e:'Wartość autoteliczna jest celem samym w sobie. Wartość instrumentalna służy osiągnięciu innego celu, np. zdobyciu pracy. Wykład przedstawia filozofię jako bezinteresowne dążenie do wiedzy.'},
-{topic:'Metoda filozofii',q:'Które postępowanie najlepiej odpowiada metodzie filozofii przedstawionej na wykładzie?',o:['Uznanie twierdzenia, ponieważ podziela je większość','Przyjęcie tezy, ponieważ głosi ją znany autorytet','Wykazanie, że teza logicznie wynika z przyjętych przesłanek','Odrzucenie pytania, ponieważ nie dotyczy praktycznej korzyści'],a:2,e:'Metodą filozofii jest racjonalna argumentacja: uzasadnianie tezy przez wykazanie jej logicznego związku z przesłankami. Popularność poglądu ani sam autorytet nie zastępują argumentu.'},
-{topic:'Ontologia / metafizyka',q:'Które pytanie należy do ontologii?',o:['Jak uzasadniamy prawdziwość naszych przekonań?','Jak ocenić moralnie złamanie obietnicy?','Co sprawia, że dzieło sztuki jest piękne?','Jakie rodzaje bytu istnieją i jakie łączą je relacje?'],a:3,e:'Ontologia bada byt: co istnieje, jakie są rodzaje bytu i ich relacje. Pozostałe pytania dotyczą odpowiednio epistemologii, etyki i estetyki.'},
-{topic:'Epistemologia',q:'Ktoś pyta: „Czy zmysły mogą nas mylić i jakie są granice naszego poznania?”. Do którego działu filozofii należy ten problem?',o:['Epistemologii','Estetyki','Filozofii politycznej','Etyki'],a:0,e:'Epistemologia, czyli teoria poznania, pyta o źródła, metody i granice poznania oraz o prawdę. Wiarygodność poznania zmysłowego jest jednym z jej problemów.'},
-{topic:'Etyka',q:'Które pytanie jest przede wszystkim pytaniem etycznym?',o:['Jakie procesy biologiczne umożliwiają ruch?','Czy oszustwo pozostaje moralnie złe, gdy nikt go nie wykryje?','Czy sport istniał w każdej epoce historycznej?','Jak piękno ruchu wpływa na odbiór widowiska?'],a:1,e:'Etyka analizuje dobro i zło moralne oraz uzasadnienie norm postępowania. Pytanie o moralną ocenę oszustwa pozostaje etyczne także wtedy, gdy dotyczy sportu.'},
-{topic:'Estetyka',q:'Który problem należy przede wszystkim do estetyki?',o:['Czy człowiek jest istotą wolną?','Czy władza państwowa jest prawomocna?','Czy piękno jest obiektywne, czy zależy od odbiorcy?','Czy poznanie ma nieprzekraczalne granice?'],a:2,e:'Estetyka zajmuje się pięknem, sztuką i przeżyciem estetycznym. Pytanie o obiektywny lub subiektywny charakter piękna jest jednym z jej podstawowych pytań.'},
-{topic:'Aksjologia',q:'Dlaczego etykę i estetykę można zaliczyć do aksjologii?',o:['Ponieważ obie badają wyłącznie budowę świata materialnego','Ponieważ obie stosują wyłącznie metody eksperymentalne','Ponieważ obie rozstrzygają wyłącznie problemy poznania','Ponieważ obie zajmują się wartościami, a aksjologia jest ich ogólną teorią'],a:3,e:'Aksjologia jest ogólną nauką o wartościach. Etyka rozważa wartości moralne, a estetyka — wartości związane z pięknem i sztuką. Wykład zaznacza, że takie ujęcie przyjmują niektórzy filozofowie.'},
-{topic:'Filozofia człowieka',q:'Które pytanie najlepiej odpowiada antropologii filozoficznej?',o:['Co znaczy być człowiekiem i jakie jest jego miejsce w świecie?','Jak zmierzyć wydolność krążeniowo-oddechową człowieka?','Jak często ludzie uprawiają sport w poszczególnych krajach?','Jakie mechanizmy fizjologiczne regulują temperaturę ciała?'],a:0,e:'Antropologia filozoficzna pyta o naturę człowieka, sens i cel życia, cierpienie, śmierć oraz miejsce człowieka w świecie. Pozostałe pytania dotyczą badań szczegółowych.'},
-{topic:'Filozofia polityczna',q:'Który problem został na wykładzie przyporządkowany filozofii politycznej?',o:['Jakie są źródła poznania zmysłowego?','Czym jest władza polityczna i co to znaczy być obywatelem?','Jakie są istotne własności bytu jako takiego?','Czy dzieło natury może być piękne?'],a:1,e:'Filozofia polityczna pyta m.in. o państwo, władzę, prawo, sprawiedliwość i obywatelstwo. Jej zakres częściowo styka się z filozofią społeczną.'},
-{topic:'Filozofia nauki',q:'Które pytanie dotyczy filozofii nauki?',o:['Jaki wynik uzyskał zawodnik w teście sprawności?','Jaka jest średnia temperatura w danym miesiącu?','Czym jest teoria naukowa i na czym polega jej sprawdzanie?','Jaką masę ma próbka badanego materiału?'],a:2,e:'Filozofia nauki bada podstawy nauki, jej metody i teorie oraz sposoby ich sprawdzania. Pozostałe pytania dotyczą konkretnych pomiarów lub wyników badań.'},
-{topic:'Filozofia sportu',q:'Które pytanie najlepiej pokazuje filozoficzną refleksję nad sportem?',o:['Ile kilometrów przebiegł zawodnik podczas meczu?','Jak zmieniło się tętno zawodnika podczas treningu?','Jak często zawodnicy doznają urazu kolana?','Co należy do istoty sportu i po co istnieje sport?'],a:3,e:'Filozofia sportu pyta o jego istotę, możliwość, cel oraz wiedzę o człowieku, jaką wnosi refleksja nad sportem. Pozostałe pytania dotyczą konkretnych danych empirycznych.'}
+  {
+    "topic": "Postawa filozoficzna",
+    "q": "W przywołanym na wykładzie porównaniu życia do igrzysk filozof przypomina widza. Która interpretacja najlepiej oddaje sens tego porównania?",
+    "o": [
+      "Poznaje rzeczywistość bez podporządkowania poznania zdobywaniu sławy lub bogactwa.",
+      "Zachowuje neutralność, więc nie musi uzasadniać swoich sądów o rzeczywistości.",
+      "Obserwuje cudze działania, dlatego rezygnuje z pytań o własne miejsce w świecie.",
+      "Dysponuje wiedzą pełniejszą od innych, więc nie potrzebuje dalszych poszukiwań."
+    ],
+    "a": 0,
+    "e": "W tym porównaniu istotny jest cel poznania: poszukiwanie natury rzeczy dla samego poznania. Postawa widza nie oznacza rezygnacji z argumentacji, pytań o człowieka ani uznania własnej wiedzy za kompletną."
+  },
+  {
+    "topic": "Wartość wiedzy",
+    "q": "Badacz poznaje pewien problem dla samego zrozumienia. Po latach jego ustalenia pomagają rozwiązać problem praktyczny. Który wniosek jest uzasadniony?",
+    "o": [
+      "Późniejszy użytek zmienia pierwotny cel badacza w cel instrumentalny.",
+      "Wiedza może być celem samym w sobie i zarazem środkiem do innego celu.",
+      "Praktyczna przydatność dowodzi, że poznanie nie miało wartości autotelicznej.",
+      "Autoteliczna wartość wiedzy zależy od tego, czy nikt jej później nie wykorzysta."
+    ],
+    "a": 1,
+    "e": "Autoteliczność dotyczy traktowania wiedzy jako celu samego w sobie, a instrumentalność — jej użycia jako środka. Późniejsze zastosowanie nie zmienia wstecz pierwotnej motywacji i nie wyklucza obu sposobów wartościowania tej samej wiedzy."
+  },
+  {
+    "topic": "Racjonalna argumentacja",
+    "q": "Oceń argument: „Każdy czyn moralnie dobry zasługuje na aprobatę. Ten czyn zasługuje na aprobatę. Zatem ten czyn jest moralnie dobry”. Nawet jeśli obie przesłanki są prawdziwe, co można powiedzieć o wniosku?",
+    "o": [
+      "Jest prawdziwy, ponieważ powtarza pojęcia występujące w przesłankach.",
+      "Jest fałszywy, ponieważ aprobata nie może towarzyszyć dobru moralnemu.",
+      "Nie wynika z przesłanek, bo aprobata mogła mieć także inne podstawy.",
+      "Wynika z przesłanek, jeśli aprobatę wyraża wystarczająco wiele osób."
+    ],
+    "a": 2,
+    "e": "Pierwsza przesłanka mówi, że dobro moralne jest wystarczającym warunkiem aprobaty, ale nie że jest jej jedyną podstawą. Z aprobaty nie wynika więc dobro moralne. Wniosek może być prawdziwy, lecz ten argument go nie dowodzi. Racjonalna argumentacja wymaga poprawnego wynikania."
+  },
+  {
+    "topic": "Ontologia a epistemologia",
+    "q": "Rozważ dwa pytania: I. „Czy istnieją byty niezależne od ludzkiego poznania?”. II. „Jak możemy uzasadnić przekonanie o ich istnieniu?”. Które przyporządkowanie najlepiej oddaje różnicę między nimi?",
+    "o": [
+      "I — epistemologia; II — ontologia.",
+      "I — ontologia; II — aksjologia.",
+      "I — antropologia filozoficzna; II — epistemologia.",
+      "I — ontologia; II — epistemologia."
+    ],
+    "a": 3,
+    "e": "Pierwsze pytanie dotyczy tego, co istnieje i w jaki sposób — jest ontologiczne. Drugie dotyczy podstaw poznania i uzasadnienia przekonania — jest epistemologiczne. Ten sam temat może być analizowany z różnych perspektyw."
+  },
+  {
+    "topic": "Wiedza, prawda i opinia",
+    "q": "Cała grupa jest przekonana, że pewna teza jest prawdziwa. Załóżmy jednak, że teza jest fałszywa. Jak należy ją zakwalifikować zgodnie z przedstawionym na wykładzie rozróżnieniem episteme i doxa?",
+    "o": [
+      "Jako mniemanie, mimo zgodności i pewności przekonań całej grupy.",
+      "Jako wiedzę, ponieważ zgodność przekonań nadaje tezie prawdziwość.",
+      "Jako wiedzę, ponieważ silne przekonanie zastępuje warunek prawdy.",
+      "Jako prawdę, jeżeli grupa potrafi wskazać praktyczne korzyści tej tezy."
+    ],
+    "a": 0,
+    "e": "W ujęciu przyjętym na wykładzie wiedza musi być prawdziwa. Zgodność, pewność lub użyteczność przekonania nie sprawiają, że fałszywa teza staje się wiedzą. Nie wynika z tego odwrotnie, że każda prawdziwa opinia automatycznie jest wiedzą."
+  },
+  {
+    "topic": "Etyka a opis zachowań",
+    "q": "Ankieta wykazała, że większość zawodników aprobuje świadome łamanie reguł, jeśli zwiększa ono szansę zwycięstwa. Co trzeba jeszcze zrobić, aby przejść od opisu wyników do refleksji etycznej?",
+    "o": [
+      "Obliczyć, czy aprobata jest częstsza wśród zwycięzców niż przegranych.",
+      "Rozważyć, czy postępowanie jest moralnie uzasadnione, niezależnie od jego popularności.",
+      "Ustalić, czy odsetek aprobaty wzrasta wraz z doświadczeniem zawodników.",
+      "Sprawdzić, czy deklarowana aprobata odpowiada faktycznemu zachowaniu."
+    ],
+    "a": 1,
+    "e": "Badanie tego, co ludzie aprobują lub robią, opisuje zachowania i przekonania. Etyka pyta o dobro i zło oraz o uzasadnienie ocen i norm. Popularność postępowania sama nie rozstrzyga o jego moralnej słuszności."
+  },
+  {
+    "topic": "Estetyka a etyka",
+    "q": "O występie sportowym powiedziano: „Był piękny, ale moralnie naganny”. Jak ocenić możliwość takiego sądu?",
+    "o": [
+      "Jest sprzeczny, ponieważ piękno jest tym samym rodzajem wartości co dobro moralne.",
+      "Jest sprzeczny, ponieważ ocenie estetycznej podlegają jedynie dzieła sztuki.",
+      "Może być spójny, ponieważ ocena estetyczna i moralna dotyczą różnych wartości.",
+      "Może być spójny tylko wtedy, gdy piękno uznaje się za wartość subiektywną."
+    ],
+    "a": 2,
+    "e": "Ocena piękna i ocena moralna nie są tożsame. Występ może być ceniony estetycznie, a zarazem oceniany negatywnie z powodu oszustwa. Spójność tego rozróżnienia nie wymaga przyjęcia subiektywności piękna."
+  },
+  {
+    "topic": "Aksjologia",
+    "q": "Pytanie brzmi: „Czy wartości istnieją niezależnie od tego, że ktoś je ceni?”. Nie ograniczamy go do dobra moralnego ani piękna. Która dziedzina obejmuje je najpełniej?",
+    "o": [
+      "Etyka, ponieważ każda wartość jest normą moralną.",
+      "Estetyka, ponieważ cenienie wartości jest przeżyciem piękna.",
+      "Epistemologia, ponieważ wartości są tym samym co przekonania.",
+      "Aksjologia, ponieważ pyta o wartości i ich obiektywny lub subiektywny charakter."
+    ],
+    "a": 3,
+    "e": "Aksjologia bada wartości w ogóle, w tym ich status i odmiany. Etyka i estetyka odnoszą się do określonych obszarów wartości. Pytanie o wartości nie jest tożsame z pytaniem o przekonania na ich temat."
+  },
+  {
+    "topic": "Filozofia człowieka",
+    "q": "Biolog opisuje mechanizmy starzenia. Filozof pyta, co śmiertelność znaczy dla sensu i celu ludzkiego życia. Które stwierdzenie najlepiej określa relację tych dociekań?",
+    "o": [
+      "Drugie stawia pytanie o człowieka, którego sam opis biologicznego mechanizmu nie rozstrzyga.",
+      "Drugie jest biologicznym wyjaśnieniem tego samego mechanizmu, zapisanym innymi słowami.",
+      "Drugie uzyskuje odpowiedź wtedy, gdy pierwsze poda wszystkie przyczyny starzenia organizmu.",
+      "Drugie wymaga odrzucenia ustaleń biologii, ponieważ filozofia nie może się do nich odnosić."
+    ],
+    "a": 0,
+    "e": "Antropologia filozoficzna pyta o naturę człowieka, sens życia, cierpienie i śmierć. Informacja o mechanizmie starzenia nie rozstrzyga sama o znaczeniu śmiertelności dla życia. Różnica pytań nie wymaga odrzucania ustaleń nauk szczegółowych."
+  },
+  {
+    "topic": "Filozofia polityczna i filozofia dziejów",
+    "q": "Dwa zespoły rozważają: I. „Co uprawomocnia władzę państwową?”. II. „Czy dzieje ludzkości mają cel?”. Która para dziedzin najlepiej odpowiada tym pytaniom, w podanej kolejności?",
+    "o": [
+      "Filozofia dziejów; filozofia polityczna.",
+      "Filozofia polityczna; filozofia dziejów.",
+      "Filozofia nauki; antropologia filozoficzna.",
+      "Antropologia filozoficzna; filozofia nauki."
+    ],
+    "a": 1,
+    "e": "Pytanie o władzę i jej podstawy należy do filozofii politycznej. Pytanie o cel i sens dziejów należy do filozofii historii, czyli filozofii dziejów. Sam fakt, że oba dotyczą życia ludzi, nie znosi różnicy między ich przedmiotami."
+  },
+  {
+    "topic": "Filozofia nauki",
+    "q": "Badacz stwierdza: „Teoria pasuje do dotychczasowych obserwacji, więc żadna przyszła obserwacja nie może jej podważyć”. Które pytanie najlepiej przenosi dyskusję na poziom filozofii nauki?",
+    "o": [
+      "Jak wielu badaczy akceptuje tę teorię w aktualnych publikacjach?",
+      "Jaką dokładność miały urządzenia użyte w ostatnim pomiarze?",
+      "Czy zgodność z dotychczasowymi danymi wystarcza do tak mocnego wniosku o teorii?",
+      "Jak szybko obliczono wyniki ostatniej serii obserwacji?"
+    ],
+    "a": 2,
+    "e": "Filozofia nauki pyta m.in. o sprawdzanie teorii, metody nauki i zmiany teorii. W tym przykładzie analizuje zasadność przejścia od dotychczasowych obserwacji do twierdzenia o wszystkich przyszłych. Liczba zwolenników, parametry pomiaru i szybkość obliczeń same nie uzasadniają tego przejścia."
+  },
+  {
+    "topic": "Filozofia sportu",
+    "q": "Piłka przekroczyła linię, ale nie uznano bramki z powodu naruszenia reguł. Student pyta o relację fizycznego zdarzenia do jego znaczenia w świecie gry. Które pytanie najtrafniej rozwija wskazany na wykładzie problem filozofii sportu?",
+    "o": [
+      "Która kamera najdokładniej zarejestrowała tor ruchu piłki?",
+      "Czy decyzja sędziego wywołała aprobatę większości kibiców?",
+      "Jak mocno naruszenie reguł wpłynęło na emocje zawodników?",
+      "W jaki sposób reguły tworzą znaczenie zdarzeń w quasi-realnym świecie sportu?"
+    ],
+    "a": 3,
+    "e": "Wykład wskazuje problem relacji rzeczywistego świata i quasi-realnego świata sportu. Przykład pozwala go zastosować: fizyczne przekroczenie linii nie musi oznaczać uznanej bramki, ponieważ sportowe znaczenie zdarzenia zależy od reguł. To pytanie o strukturę świata gry, nie tylko o pomiar lub reakcje uczestników."
+  }
 ];
 const $=id=>document.getElementById(id);let questions=[],index=0,selected=null,locked=false,answers=[];
 function shuffle(xs){const a=[...xs];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
