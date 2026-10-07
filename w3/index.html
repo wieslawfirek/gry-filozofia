@@ -4,7 +4,7 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#172b3a"><title>Początki filozofii — gra po wykładzie 3</title>
 <style>
-:root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#172b3a;background:#f4f0e8}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 90% 0,#f7dca5,transparent 35%),#f4f0e8;min-height:100vh}main{max-width:920px;margin:auto;padding:30px 20px 70px}a{color:#8a4524}header{display:flex;justify-content:space-between;gap:15px;font-size:.9rem;margin-bottom:34px}.tag{text-transform:uppercase;letter-spacing:.14em;font-size:.74rem;font-weight:800;color:#8a4524}h1,h2,h3{font-family:Georgia,serif;line-height:1.2}h1{font-size:clamp(2rem,6vw,3.7rem);margin:14px 0}h2{font-size:clamp(1.35rem,4vw,2rem);margin:16px 0 24px}p{line-height:1.62}.muted{color:#52616b}.card{background:#fffdf9;border:1px solid #ded3c3;border-radius:24px;padding:clamp(22px,5vw,42px);box-shadow:0 16px 45px #172b3a10}.pills{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0}.pill,.difficulty{background:#f0e8dc;border-radius:30px;padding:8px 14px;font-size:.88rem}.difficulty{display:inline-block;margin-bottom:8px;font-weight:800}.difficulty.easy{background:#e5f2ea;color:#23603f}.difficulty.medium{background:#f8edcf;color:#7a5311}.difficulty.hard{background:#f4dfdc;color:#843d35}button,select{font:inherit}button{cursor:pointer;min-height:48px;border-radius:12px;border:2px solid transparent;padding:13px 19px}button:focus-visible,a:focus-visible,select:focus-visible{outline:3px solid #bd6537;outline-offset:3px}.primary{background:#172b3a;color:white;font-weight:760}.secondary{background:#eee5d8;color:#172b3a}.option{width:100%;text-align:left;background:white;border-color:#ded3c3;display:flex;gap:14px;align-items:center}.option:hover:not(:disabled){border-color:#a15a2f}.option.selected{background:#f8e6ce;border-color:#a15a2f}.option.correct{background:#e2f1e9;border-color:#28794e}.option.wrong{background:#fde7e4;border-color:#a53d31}.option:disabled{cursor:default;opacity:1}.letter{font-weight:800;background:#f0ebe4;border-radius:8px;padding:5px 10px;min-width:38px;text-align:center}.options{display:grid;gap:12px}.checks .option::before{content:"□";font-size:1.25rem;font-weight:800}.checks .option.selected::before{content:"☑"}.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}.meta{display:flex;justify-content:space-between;gap:12px;font-size:.9rem}.progress{height:8px;border-radius:10px;background:#e6ded2;overflow:hidden;margin:14px 0 26px}.progress span{display:block;height:100%;background:#b96639;transition:width .2s}.feedback{border-left:4px solid #b96639;padding:10px 16px;margin-top:22px;background:#f6efe5}.feedback p{margin:7px 0}.feedback ul{margin:9px 0 0;padding-left:20px;line-height:1.55}.match-grid{display:grid;gap:12px}.match-row{display:grid;grid-template-columns:minmax(120px,.75fr) minmax(190px,1.25fr);gap:12px;align-items:center;padding:12px;border:1px solid #e2d8ca;border-radius:14px;background:#fff}.match-left{font-weight:800}.match-row select{width:100%;min-height:46px;border:1px solid #cfc2b1;border-radius:10px;padding:8px;background:white;color:#172b3a}.match-row.good{border-color:#28794e;background:#eef8f2}.match-row.bad{border-color:#a53d31;background:#fff0ee}.big{font-size:clamp(3rem,12vw,5rem);font-family:Georgia,serif;margin:18px 0 0}.review{padding:20px 0;border-top:1px solid #ded3c3}.review h3{font-size:1rem;line-height:1.5;margin-bottom:8px}.review p{font-size:.95rem;margin:7px 0}.status{font-weight:800;color:#28794e}.status.miss{color:#a53d31}.round-note{color:#8a4524;font-weight:750;margin-top:-14px;margin-bottom:20px}footer{font-size:.8rem;color:#52616b;line-height:1.6;margin-top:25px}[hidden]{display:none!important}@media(max-width:620px){header{display:block}header span{display:block;margin-top:8px}.match-row{grid-template-columns:1fr}.card{border-radius:18px}}@media(prefers-reduced-motion:reduce){*{transition:none!important}}@media print{header,.actions,footer{display:none}.card{box-shadow:none;border:0}.review{break-inside:avoid}body{background:white}}
+:root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#172b3a;background:#f4f0e8}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 90% 0,#f7dca5,transparent 35%),#f4f0e8;min-height:100vh}main{max-width:920px;margin:auto;padding:30px 20px 70px}a{color:#8a4524}header{display:flex;justify-content:space-between;gap:15px;font-size:.9rem;margin-bottom:34px}.tag{text-transform:uppercase;letter-spacing:.14em;font-size:.74rem;font-weight:800;color:#8a4524}h1,h2,h3{font-family:Georgia,serif;line-height:1.2}h1{font-size:clamp(2rem,6vw,3.7rem);margin:14px 0}h2{font-size:clamp(1.35rem,4vw,2rem);margin:16px 0 24px}p{line-height:1.62}.muted{color:#52616b}.card{background:#fffdf9;border:1px solid #ded3c3;border-radius:24px;padding:clamp(22px,5vw,42px);box-shadow:0 16px 45px #172b3a10}.pills{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0}.pill,.difficulty{background:#f0e8dc;border-radius:30px;padding:8px 14px;font-size:.88rem}.difficulty{display:inline-block;margin-bottom:8px;font-weight:800}.difficulty.easy{background:#e5f2ea;color:#23603f}.difficulty.medium{background:#f8edcf;color:#7a5311}.difficulty.hard{background:#f4dfdc;color:#843d35}button,select{font:inherit}button{cursor:pointer;min-height:48px;border-radius:12px;border:2px solid transparent;padding:13px 19px}button:focus-visible,a:focus-visible,select:focus-visible{outline:3px solid #bd6537;outline-offset:3px}.primary{background:#172b3a;color:white;font-weight:760}.secondary{background:#eee5d8;color:#172b3a}.option{width:100%;text-align:left;background:white;border-color:#ded3c3;display:flex;gap:14px;align-items:center}.option:hover:not(:disabled){border-color:#a15a2f}.option.selected{background:#f8e6ce;border-color:#a15a2f}.option.correct{background:#e2f1e9;border-color:#28794e}.option.wrong{background:#fde7e4;border-color:#a53d31}.option:disabled{cursor:default;opacity:1}.letter{font-weight:800;background:#f0ebe4;border-radius:8px;padding:5px 10px;min-width:38px;text-align:center}.options{display:grid;gap:12px}.checks .option::before{content:"□";font-size:1.25rem;font-weight:800}.checks .option.selected::before{content:"☑"}.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}.meta{display:flex;justify-content:space-between;gap:12px;font-size:.9rem}.progress{height:8px;border-radius:10px;background:#e6ded2;overflow:hidden;margin:14px 0 26px}.progress span{display:block;height:100%;background:#b96639;transition:width .2s}.feedback{border-left:4px solid #b96639;padding:10px 16px;margin-top:22px;background:#f6efe5}.feedback p{margin:7px 0}.feedback ul{margin:9px 0 0;padding-left:20px;line-height:1.55}.match-grid{display:grid;gap:12px}.match-row{display:grid;grid-template-columns:minmax(120px,.75fr) minmax(190px,1.25fr);gap:12px;align-items:center;padding:12px;border:1px solid #e2d8ca;border-radius:14px;background:#fff}.match-left{font-weight:800}.match-row select{width:100%;min-height:46px;border:1px solid #cfc2b1;border-radius:10px;padding:8px;background:white;color:#172b3a}.match-row.good{border-color:#28794e;background:#eef8f2}.match-row.bad{border-color:#a53d31;background:#fff0ee}.big{font-size:clamp(3rem,12vw,5rem);font-family:Georgia,serif;margin:18px 0 0}.review{padding:20px 0;border-top:1px solid #ded3c3}.review h3{font-size:1rem;line-height:1.5;margin-bottom:8px}.review p{font-size:.95rem;margin:7px 0}.status{font-weight:800;color:#28794e}.status.miss{color:#a53d31}.round-note{color:#8a4524;font-weight:750;margin-top:-14px;margin-bottom:20px}footer{font-size:.8rem;color:#52616b;line-height:1.6;margin-top:25px}[hidden]{display:none!important}@media(max-width:620px){header{display:block}header span{display:block;margin-top:8px}.match-row{grid-template-columns:1fr}.card{border-radius:18px}}@media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body><main>
@@ -34,7 +34,7 @@
 <section id="result" class="card" hidden>
 <div class="tag">Podsumowanie</div><h1 id="resultTitle" tabindex="-1">Twój wynik</h1>
 <div id="score" class="big"></div><p id="summary"></p><p id="repeat" class="muted"></p>
-<div class="actions"><button id="restart" class="primary">Zagraj ponownie</button><button id="print" class="secondary">Drukuj / zapisz jako PDF</button></div>
+<div class="actions"><button id="restart" class="primary">Zagraj ponownie</button></div>
 <h2>Przegląd zadań</h2><div id="review"></div>
 </section>
 
@@ -51,7 +51,7 @@ const levels={
 };
 
 const bank=[
-{level:'easy',type:'single',topic:'Naturalizm',q:'Które zdanie najlepiej oddaje znaczenie naturalizmu w ujęciu z wykładu?',o:[
+{level:'easy',type:'single',topic:'Naturalizm',q:'Które zdanie najlepiej oddaje znaczenie naturalizmu?',o:[
 'Zjawiska należy wyjaśniać przez przyczyny naturalne i prawa przyrody.',
 'Każde zjawisko przyrodnicze jest działaniem określonego bóstwa.',
 'Prawdziwe wyjaśnienie może opierać się wyłącznie na przekazie religijnym.',
@@ -69,7 +69,7 @@ const bank=[
 
 {level:'easy',type:'match',topic:'Filozof i arché',q:'Połącz filozofa lub szkołę z przypisywaną im zasadą świata (arché).',pairs:[
 ['Tales','woda'],['Anaksymander','apeiron'],['Anaksymenes','powietrze'],['Heraklit','ogień'],['Pitagorejczycy','liczba'],['Atomiści','atomy']
-],e:'To podstawowe zestawienie z wykładu: od obserwowalnych żywiołów po bardziej abstrakcyjne zasady.'},
+],e:'To podstawowe zestawienie: od obserwowalnych żywiołów po bardziej abstrakcyjne zasady.'},
 
 {level:'easy',type:'single',topic:'Apeiron',q:'Który opis najlepiej pasuje do apeironu Anaksymandra?',o:[
 'Bezkresny, wieczny i nieokreślony początek wszystkiego.',
@@ -78,7 +78,7 @@ const bank=[
 'Zbiór reguł moralnych siedmiu mędrców.'
 ],a:0,e:'Anaksymander uznał, że zasada wszystkiego musi być nieskończona i jakościowo nieokreślona — nazwał ją apeironem, czyli bezkresem.'},
 
-{level:'easy',type:'single',topic:'Jonia',q:'Gdzie według wykładu narodziła się pierwsza szkoła filozoficzna?',o:[
+{level:'easy',type:'single',topic:'Jonia',q:'Gdzie narodziła się pierwsza szkoła filozoficzna?',o:[
 'W Jonii, przede wszystkim w Milecie na wybrzeżu Azji Mniejszej.',
 'W Sparcie.',
 'W Rzymie.',
@@ -93,23 +93,23 @@ const bank=[
 ['Inteligibilność świata','przekonanie, że świat jest racjonalny i poznawalny']
 ],e:'Te pojęcia opisują zmianę sposobu myślenia: od genealogii bogów do próby racjonalnego poznania uporządkowanego świata.'},
 
-{level:'medium',type:'multi',topic:'Filozofowie jońscy',q:'Których myślicieli wykład zalicza do jońskich filozofów przyrody?',o:[
+{level:'medium',type:'multi',topic:'Filozofowie jońscy',q:'Którzy z poniższych myślicieli należą do jońskich filozofów przyrody?',o:[
 'Tales z Miletu','Anaksymander','Anaksymenes','Heraklit z Efezu','Sokrates','Platon'
-],a:[0,1,2,3],e:'W wykładzie do tej grupy zaliczono Talesa, Anaksymandra, Anaksymenesa i Heraklita.'},
+],a:[0,1,2,3],e:'Do tej grupy zalicza się Talesa, Anaksymandra, Anaksymenesa i Heraklita.'},
 
-{level:'medium',type:'tf',topic:'Doświadczenie i rozum',q:'Pierwsi filozofowie przyrody ograniczali się wyłącznie do danych zmysłowych i nie poszukiwali czynników niewidocznych w doświadczeniu.',a:false,e:'Anaksymander jest w wykładzie przykładem przejścia od prostych obserwacji do rozumowego poszukiwania nieobserwowalnej zasady — apeironu.'},
+{level:'medium',type:'tf',topic:'Doświadczenie i rozum',q:'Pierwsi filozofowie przyrody ograniczali się wyłącznie do danych zmysłowych i nie poszukiwali czynników niewidocznych w doświadczeniu.',a:false,e:'Anaksymander jest przykładem przejścia od prostych obserwacji do rozumowego poszukiwania nieobserwowalnej zasady — apeironu.'},
 
 {level:'medium',type:'match',topic:'Metoda',q:'Połącz metodę z jej charakterystyką.',pairs:[
 ['Analiza','rozkład całości na prostsze składniki aż do elementów podstawowych'],
 ['Indukcja','przechodzenie od pojedynczych obserwacji do ogólnych wniosków']
-],e:'Wykład wskazuje analizę i zaczątek indukcji jako dwie metody zapoczątkowane przez jońskich filozofów przyrody.'},
+],e:'Analiza i zaczątek indukcji to dwie metody zapoczątkowane przez jońskich filozofów przyrody.'},
 
 {level:'medium',type:'match',topic:'Postawa filozoficzna',q:'Połącz postawę z jej funkcją.',pairs:[
 ['Krytycyzm','stwarza sytuację pytania i podważa zastane wyjaśnienia'],
 ['Samokrytycyzm','nie pozwala przyjąć byle jakiej odpowiedzi']
 ],e:'Krytycyzm uruchamia pytanie, a samokrytycyzm wymaga kontroli własnych odpowiedzi i argumentów.'},
 
-{level:'medium',type:'multi',topic:'Od mitu do filozofii',q:'Które zjawiska wykład wskazuje jako elementy przejścia od myślenia mitologicznego do filozoficznego?',o:[
+{level:'medium',type:'multi',topic:'Od mitu do filozofii',q:'Które zjawiska były elementami przejścia od myślenia mitologicznego do filozoficznego?',o:[
 'Demitologizacja przyrody.',
 'Poszukiwanie ogólnych wyjaśnień zjawisk.',
 'Krytyczna debata nad poglądami.',
@@ -122,23 +122,23 @@ const bank=[
 ['Poeci kosmogoniczni','wierzenia religijne'],
 ['Technicy','umiejętności praktyczne'],
 ['Mędrcy','reguły życiowe']
-],e:'Wykład wyróżnia trzy wcześniejsze zasoby kultury greckiej: religię, umiejętności praktyczne i mądrość życiową.'},
+],e:'Można wyróżnić trzy wcześniejsze zasoby kultury greckiej: religię, umiejętności praktyczne i mądrość życiową.'},
 
-{level:'hard',type:'single',topic:'Problem wyjaśnienia',q:'Dlaczego odpowiedź „świat powstał dzięki bogom” została w wykładzie uznana za wyjaśnienie pozorne?',o:[
+{level:'hard',type:'single',topic:'Problem wyjaśnienia',q:'Dlaczego odpowiedź „świat powstał dzięki bogom” można uznać za wyjaśnienie pozorne?',o:[
 'Bo przesuwa problem dalej: nadal trzeba wyjaśnić, jak powstał świat i skąd wzięli się sami bogowie.',
 'Bo Grecy nie znali żadnych mitów o bogach.',
 'Bo filozofowie od początku dowiedli eksperymentalnie, że bogowie nie istnieją.',
 'Bo kosmogonia nigdy nie dotyczyła powstania świata.'
 ],a:0,e:'Krytyka dotyczyła jakości wyjaśnienia: odwołanie do bogów nie rozwiązywało problemu mechanizmu i początku, lecz rodziło kolejne pytanie.'},
 
-{level:'hard',type:'single',topic:'Inteligibilność',q:'Stwierdzenie, że świat jest „inteligibilny”, oznacza w kontekście wykładu, że:',o:[
+{level:'hard',type:'single',topic:'Inteligibilność',q:'Stwierdzenie, że świat jest „inteligibilny”, oznacza, że:',o:[
 'świat ma racjonalny porządek, dlatego może być przedmiotem ludzkiego poznania.',
 'świat może być poznany wyłącznie przez objawienie religijne.',
 'świat jest chaotyczny, a prawidłowości są złudzeniem.',
 'każdy człowiek tworzy własne prawa przyrody.'
 ],a:0,e:'Założenie inteligibilności umożliwia filozoficzne badanie: jeśli rzeczywistość jest uporządkowana i logiczna, rozum może próbować ją wyjaśniać.'},
 
-{level:'hard',type:'multi',topic:'Warunki powstania filozofii',q:'Które warunki społeczne, polityczne lub ekonomiczne wykład wskazuje jako sprzyjające narodzinom filozofii?',o:[
+{level:'hard',type:'multi',topic:'Warunki powstania filozofii',q:'Które warunki społeczne, polityczne lub ekonomiczne sprzyjały narodzinom filozofii?',o:[
 'Otwartość na inne kultury.',
 'Wolność polityczna.',
 'Wolność od religijnego dogmatyzmu.',
@@ -146,16 +146,16 @@ const bank=[
 'Wolny czas części obywateli.',
 'Całkowita izolacja od innych ludów.',
 'Ścisłe podporządkowanie myślenia sanktuariom kapłańskim.'
-],a:[0,1,2,3,4],e:'Wykład łączy narodziny filozofii m.in. z otwartością, wolnością, autonomią kolonii i czasem wolnym obywateli; izolacja i dogmatyzm działałyby przeciwnie.'},
+],a:[0,1,2,3,4],e:'Narodziny filozofii wiązały się m.in. z otwartością, wolnością, autonomią kolonii i czasem wolnym obywateli; izolacja i dogmatyzm działałyby przeciwnie.'},
 
-{level:'hard',type:'single',topic:'Pytanie filozoficzne',q:'Dlaczego pytanie o arché można uznać za pierwsze pytanie filozoficzne w ujęciu wykładu?',o:[
+{level:'hard',type:'single',topic:'Pytanie filozoficzne',q:'Dlaczego pytanie o arché można uznać za pierwsze pytanie filozoficzne?',o:[
 'Ponieważ jednocześnie pyta o najgłębszą strukturę i pochodzenie kosmosu, szukając jednej racjonalnej zasady.',
 'Ponieważ dotyczy wyłącznie tego, który bóg stworzył świat.',
 'Ponieważ jest pytaniem czysto praktycznym, potrzebnym do prowadzenia handlu.',
 'Ponieważ odnosi się tylko do zasad moralnych.'
 ],a:0,e:'Pytanie o arché przekracza opis pojedynczych zjawisk: szuka wspólnej zasady całej przyrody i staje się pytaniem kosmologicznym oraz kosmogonicznym.'},
 
-{level:'hard',type:'multi',topic:'Strategia filozoficzna',q:'Które elementy przedstawia wykład jako ważne dla rodzącej się strategii badań filozoficznych?',o:[
+{level:'hard',type:'multi',topic:'Strategia filozoficzna',q:'Które elementy były ważne dla rodzącej się strategii badań filozoficznych?',o:[
 'Tworzenie precyzyjnej terminologii.',
 'Stosowanie metody.',
 'Uzasadnianie przekonań.',
@@ -172,7 +172,7 @@ const maxPoints=bank.reduce((s,q)=>s+levels[q.level].pts,0);
 function kindLabel(type){
   return type==='single'?'Jedna poprawna odpowiedź':type==='tf'?'Prawda czy fałsz':type==='multi'?'Wybierz wszystkie poprawne':'Połącz w pary';
 }
-function sameSet(a,b){if(a.length!==b.length)return false;const x=[...a].sort((m,n)=>m-n),y=[...b].sort((m,n)=>m-n);return x.every((v,i)=>v===y[i]);}
+function shuffle(xs){const a=[...xs];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}\nfunction sameSet(a,b){if(a.length!==b.length)return false;const x=[...a].sort((m,n)=>m-n),y=[...b].sort((m,n)=>m-n);return x.every((v,i)=>v===y[i]);}
 function matchCorrect(q){return q.pairs.every((p,i)=>matchValues[i]===p[1]);}
 function enableCheck(){
   const q=bank[index];
@@ -199,21 +199,34 @@ function render(){
   const area=$('answerArea');area.replaceChildren();
 
   if(q.type==='single'||q.type==='tf'){
-    const options=q.type==='tf'?['Prawda','Fałsz']:q.o;
     const wrap=document.createElement('div');wrap.className='options';
-    options.forEach((text,i)=>{
-      const b=document.createElement('button');b.className='option';b.type='button';b.setAttribute('aria-pressed','false');
-      const letter=document.createElement('span');letter.className='letter';letter.textContent=q.type==='tf'?(i===0?'P':'F'):'ABCD'[i];
-      const label=document.createElement('span');label.textContent=text;b.append(letter,label);
-      b.addEventListener('click',()=>{if(locked)return;selectedSingle=q.type==='tf'?(i===0):i;[...wrap.children].forEach(x=>{x.classList.remove('selected');x.setAttribute('aria-pressed','false')});b.classList.add('selected');b.setAttribute('aria-pressed','true');enableCheck()});
-      wrap.append(b);
-    });area.append(wrap);
+    if(q.type==='tf'){
+      const options=['Prawda','Fałsz'];
+      options.forEach((text,i)=>{
+        const b=document.createElement('button');b.className='option';b.type='button';b.setAttribute('aria-pressed','false');
+        const letter=document.createElement('span');letter.className='letter';letter.textContent=i===0?'P':'F';
+        const label=document.createElement('span');label.textContent=text;b.append(letter,label);
+        b.addEventListener('click',()=>{if(locked)return;selectedSingle=i===0;[...wrap.children].forEach(x=>{x.classList.remove('selected');x.setAttribute('aria-pressed','false')});b.classList.add('selected');b.setAttribute('aria-pressed','true');enableCheck()});
+        wrap.append(b);
+      });
+    }else{
+      const order=shuffle(q.o.map((_,i)=>i));
+      order.forEach((originalIndex,displayIndex)=>{
+        const b=document.createElement('button');b.className='option';b.type='button';b.setAttribute('aria-pressed','false');b.dataset.original=originalIndex;
+        const letter=document.createElement('span');letter.className='letter';letter.textContent='ABCD'[displayIndex];
+        const label=document.createElement('span');label.textContent=q.o[originalIndex];b.append(letter,label);
+        b.addEventListener('click',()=>{if(locked)return;selectedSingle=originalIndex;[...wrap.children].forEach(x=>{x.classList.remove('selected');x.setAttribute('aria-pressed','false')});b.classList.add('selected');b.setAttribute('aria-pressed','true');enableCheck()});
+        wrap.append(b);
+      });
+    }
+    area.append(wrap);
   } else if(q.type==='multi'){
     const wrap=document.createElement('div');wrap.className='options checks';
-    q.o.forEach((text,i)=>{
-      const b=document.createElement('button');b.className='option';b.type='button';b.setAttribute('aria-pressed','false');
-      const label=document.createElement('span');label.textContent=text;b.append(label);
-      b.addEventListener('click',()=>{if(locked)return;if(selectedMulti.has(i)){selectedMulti.delete(i);b.classList.remove('selected');b.setAttribute('aria-pressed','false')}else{selectedMulti.add(i);b.classList.add('selected');b.setAttribute('aria-pressed','true')}enableCheck()});
+    const order=shuffle(q.o.map((_,i)=>i));
+    order.forEach(originalIndex=>{
+      const b=document.createElement('button');b.className='option';b.type='button';b.setAttribute('aria-pressed','false');b.dataset.original=originalIndex;
+      const label=document.createElement('span');label.textContent=q.o[originalIndex];b.append(label);
+      b.addEventListener('click',()=>{if(locked)return;if(selectedMulti.has(originalIndex)){selectedMulti.delete(originalIndex);b.classList.remove('selected');b.setAttribute('aria-pressed','false')}else{selectedMulti.add(originalIndex);b.classList.add('selected');b.setAttribute('aria-pressed','true')}enableCheck()});
       wrap.append(b);
     });area.append(wrap);
   } else {
@@ -246,15 +259,16 @@ function check(){
   if(q.type==='single'||q.type==='tf'){
     [...area.querySelectorAll('.option')].forEach((b,i)=>{
       b.disabled=true;
-      const val=q.type==='tf'?(i===0):i;
+      const val=q.type==='tf'?(i===0):Number(b.dataset.original);
       if(val===q.a)b.classList.add('correct');
       else if(val===selectedSingle)b.classList.add('wrong');
     });
   } else if(q.type==='multi'){
-    [...area.querySelectorAll('.option')].forEach((b,i)=>{
+    [...area.querySelectorAll('.option')].forEach(b=>{
       b.disabled=true;
-      if(q.a.includes(i))b.classList.add('correct');
-      else if(selectedMulti.has(i))b.classList.add('wrong');
+      const originalIndex=Number(b.dataset.original);
+      if(q.a.includes(originalIndex))b.classList.add('correct');
+      else if(selectedMulti.has(originalIndex))b.classList.add('wrong');
     });
   } else {
     [...area.querySelectorAll('.match-row')].forEach((row,i)=>{
@@ -280,7 +294,7 @@ function finish(){
   $('quiz').hidden=true;$('result').hidden=false;
   const pct=Math.round(points/maxPoints*100);
   $('score').textContent=points+' / '+maxPoints;
-  $('summary').textContent=pct+'% możliwych punktów. '+(pct>=90?'Bardzo dobra znajomość pojęć i zależności z wykładu.':pct>=70?'Dobra baza. Przejrzyj jeszcze zadania oznaczone jako „do powtórki”.':pct>=50?'Najważniejsze podstawy są już uchwycone, ale warto wrócić do pojęć i powiązań między nimi.':'Warto jeszcze raz przejść przez wykład, szczególnie definicje i pytanie o arché.');
+  $('summary').textContent=pct+'% możliwych punktów. '+(pct>=90?'Bardzo dobra znajomość pojęć i zależności.':pct>=70?'Dobra baza. Przejrzyj jeszcze zadania oznaczone jako „do powtórki”.':pct>=50?'Najważniejsze podstawy są już uchwycone, ale warto wrócić do pojęć i powiązań między nimi.':'Warto jeszcze raz powtórzyć materiał, szczególnie definicje i pytanie o arché.');
   const missed=answers.filter(a=>!a.ok).map(a=>a.q.topic);
   $('repeat').textContent=missed.length?'Do powtórki: '+[...new Set(missed)].join(', ')+'.':'Bez błędów — możesz spróbować wyjaśnić własnymi słowami, na czym polegało przejście od mitu do filozofii.';
   const review=$('review');review.replaceChildren();
@@ -300,5 +314,5 @@ $('start').addEventListener('click',start);
 $('restart').addEventListener('click',start);
 $('check').addEventListener('click',check);
 $('next').addEventListener('click',()=>{if(!locked)return;if(index<bank.length-1){index++;render()}else finish()});
-$('print').addEventListener('click',()=>window.print());
+
 </script></body></html>
