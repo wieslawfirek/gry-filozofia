@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#172b3a"><title>Człowiek i ewolucja — test po wykładzie 4</title>
+<style>
+:root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#172b3a;background:#f4f0e8}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 90% 0,#f7dca5,transparent 35%),#f4f0e8;min-height:100vh}main{max-width:920px;margin:auto;padding:30px 20px 70px}a{color:#8a4524}header{display:flex;justify-content:space-between;gap:15px;font-size:.9rem;margin-bottom:34px}.tag{text-transform:uppercase;letter-spacing:.14em;font-size:.74rem;font-weight:800;color:#8a4524}h1,h2,h3{font-family:Georgia,serif;line-height:1.2}h1{font-size:clamp(2rem,6vw,3.7rem);margin:14px 0}h2{font-size:clamp(1.35rem,4vw,2rem);margin:16px 0 24px}p{line-height:1.62}.muted{color:#52616b}.card{background:#fffdf9;border:1px solid #ded3c3;border-radius:24px;padding:clamp(22px,5vw,42px);box-shadow:0 16px 45px #172b3a10}.pills{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0}.pill,.difficulty{background:#f0e8dc;border-radius:30px;padding:8px 14px;font-size:.88rem}.difficulty{display:inline-block;margin-bottom:8px;font-weight:800}.difficulty.easy{background:#e5f2ea;color:#23603f}.difficulty.medium{background:#f8edcf;color:#7a5311}.difficulty.hard{background:#f4dfdc;color:#843d35}button,select{font:inherit}button{cursor:pointer;min-height:48px;border-radius:12px;border:2px solid transparent;padding:13px 19px}button:focus-visible,a:focus-visible,select:focus-visible{outline:3px solid #bd6537;outline-offset:3px}.primary{background:#172b3a;color:white;font-weight:760}.secondary{background:#eee5d8;color:#172b3a}.option{width:100%;text-align:left;background:white;border-color:#ded3c3;display:flex;gap:14px;align-items:center}.option:hover:not(:disabled){border-color:#a15a2f}.option.selected{background:#f8e6ce;border-color:#a15a2f}.option.correct{background:#e2f1e9;border-color:#28794e}.option.wrong{background:#fde7e4;border-color:#a53d31}.option:disabled{cursor:default;opacity:1}.letter{font-weight:800;background:#f0ebe4;border-radius:8px;padding:5px 10px;min-width:38px;text-align:center}.options{display:grid;gap:12px}.checks .option::before{content:"□";font-size:1.25rem;font-weight:800}.checks .option.selected::before{content:"☑"}.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}.meta{display:flex;justify-content:space-between;gap:12px;font-size:.9rem}.progress{height:8px;border-radius:10px;background:#e6ded2;overflow:hidden;margin:14px 0 26px}.progress span{display:block;height:100%;background:#b96639;transition:width .2s}.feedback{border-left:4px solid #b96639;padding:10px 16px;margin-top:22px;background:#f6efe5}.feedback p{margin:7px 0}.feedback ul{margin:9px 0 0;padding-left:20px;line-height:1.55}.match-grid{display:grid;gap:12px}.match-row{display:grid;grid-template-columns:minmax(120px,.75fr) minmax(190px,1.25fr);gap:12px;align-items:center;padding:12px;border:1px solid #e2d8ca;border-radius:14px;background:#fff}.match-left{font-weight:800}.match-row select{width:100%;min-height:46px;border:1px solid #cfc2b1;border-radius:10px;padding:8px;background:white;color:#172b3a}.match-row.good{border-color:#28794e;background:#eef8f2}.match-row.bad{border-color:#a53d31;background:#fff0ee}.big{font-size:clamp(3rem,12vw,5rem);font-family:Georgia,serif;margin:18px 0 0}.review{padding:20px 0;border-top:1px solid #ded3c3}.review h3{font-size:1rem;line-height:1.5;margin-bottom:8px}.review p{font-size:.95rem;margin:7px 0}.status{font-weight:800;color:#28794e}.status.miss{color:#a53d31}.round-note{color:#8a4524;font-weight:750;margin-top:-14px;margin-bottom:20px}footer{font-size:.8rem;color:#52616b;line-height:1.6;margin-top:25px}[hidden]{display:none!important}@media(max-width:620px){header{display:block}header span{display:block;margin-top:8px}.match-row{grid-template-columns:1fr}.card{border-radius:18px}}@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body><main>
+<header><a href="../">← Wszystkie gry</a><span>Wykład 4 · dr Wiesław Firek</span></header>
+
+<section id="intro" class="card">
+<div class="tag">Gra powtórkowa po wykładzie</div>
+<h1>Człowiek i ewolucja</h1>
+<p class="muted">Istota człowieka, stworzenie i ewolucja. Augustyn, Darwin, Lamarck, Paley oraz argument z inteligentnego projektu.</p>
+<div class="pills"><span class="pill">15 pytań</span><span class="pill">3 typy pytań</span><span class="pill">15 pkt do zdobycia</span><span class="pill">Bez limitu czasu</span></div>
+<p>Odpowiedz na pytania jednokrotnego wyboru, prawda/fałsz oraz zadanie na dopasowanie. Wybierz odpowiedź i kliknij „Sprawdź odpowiedź”. Po każdym pytaniu zobaczysz wynik i wyjaśnienie. Każde w pełni poprawnie rozwiązane pytanie to 1 punkt.</p>
+<button id="start" class="primary">Rozpocznij test →</button>
+</section>
+
+<section id="quiz" class="card" hidden>
+<div class="meta"><span id="counter"></span><span id="points"></span></div>
+<div class="progress" role="progressbar" aria-label="Postęp gry" aria-valuemin="0" aria-valuemax="15" aria-valuenow="0"><span id="bar"></span></div>
+<div id="difficulty" class="difficulty" hidden></div>
+<div id="kind" class="tag"></div>
+<h2 id="question" tabindex="-1"></h2>
+<p id="instruction" class="round-note"></p>
+<div id="answerArea"></div>
+<div id="feedback" class="feedback" role="status" aria-live="polite" hidden></div>
+<div class="actions"><button id="check" class="primary" disabled>Sprawdź odpowiedź</button><button id="next" class="primary" hidden>Następne zadanie →</button></div>
+</section>
+
+<section id="result" class="card" hidden>
+<div class="tag">Podsumowanie</div><h1 id="resultTitle" tabindex="-1">Twój wynik</h1>
+<div id="score" class="big"></div><p id="summary"></p><p id="repeat" class="muted"></p>
+<div class="actions"><button id="restart" class="primary">Rozwiąż ponownie</button></div>
+<h2>Przegląd zadań</h2><div id="review"></div>
+</section>
+
+<footer>Test służy powtórce po wykładzie 4. Wynik nie jest wysyłany ani zapisywany na serwerze.</footer>
+<noscript><p>Aby rozwiązać grę, włącz JavaScript w przeglądarce.</p></noscript>
+
+</main><script>
+'use strict';
+
+const levels={
+  easy:{label:'Łatwe · 1 pkt',cls:'easy',pts:1},
+  medium:{label:'Średnie · 2 pkt',cls:'medium',pts:2},
+  hard:{label:'Trudne · 3 pkt',cls:'hard',pts:3}
+};
+
+const bank=[
+  {
+    "level": "easy",
+    "type": "single",
+    "topic": "Antropologia filozoficzna",
+    "q": "Które pytanie jest podstawowym pytaniem antropologii filozoficznej?",
+    "o": [
+      "Jak funkcjonuje układ nerwowy człowieka?",
+      "Czym jest człowiek?",
+      "Jak przebiega historia społeczeństw?",
+      "Jakie cechy osobowości odróżniają poszczególnych ludzi?"
+    ],
+    "a": 1,
+    "e": "Antropologia filozoficzna pyta o istotę i sposób istnienia człowieka, jego miejsce w świecie i to, co znaczy być człowiekiem."
+  },
+  {
+    "level": "easy",
+    "type": "tf",
+    "topic": "Istota i cechy przypadłościowe",
+    "q": "Kolor skóry, wzrost i liczba kończyn stanowią istotę człowieka.",
+    "a": false,
+    "e": "Są to cechy przypadłościowe. Ich zróżnicowanie lub zmiana nie odbiera człowiekowi człowieczeństwa."
+  },
+  {
+    "level": "easy",
+    "type": "single",
+    "topic": "Demiurg i Stwórca",
+    "q": "Czym różni się platoński Demiurg od Boga jako Stwórcy w koncepcji chrześcijańskiej?",
+    "o": [
+      "Demiurg stwarza materię, a Bóg chrześcijański tylko ją porządkuje.",
+      "Obaj wyłącznie porządkują istniejącą wcześniej materię.",
+      "Demiurg kształtuje istniejącą materię, a Bóg chrześcijański powołuje świat do istnienia.",
+      "Demiurg tworzy przyrodę, a Bóg chrześcijański wyłącznie człowieka."
+    ],
+    "a": 2,
+    "e": "Demiurg kształtuje zastaną materię według wzoru idei. W chrześcijańskiej koncepcji stworzenia Bóg jest źródłem istnienia świata, a nie jedynie jego budowniczym."
+  },
+  {
+    "level": "easy",
+    "type": "single",
+    "topic": "Teodycea",
+    "q": "Na czym polega problem teodycei?",
+    "o": [
+      "Na ustaleniu, kiedy powstały pierwsze religie.",
+      "Na wyjaśnieniu różnic między gatunkami.",
+      "Na rozstrzygnięciu, czy człowiek posiada ciało.",
+      "Na pogodzeniu istnienia zła z dobrocią i wszechmocą Boga."
+    ],
+    "a": 3,
+    "e": "Teodycea podejmuje problem istnienia zła i cierpienia w świecie stworzonym przez dobrego i wszechmocnego Boga."
+  },
+  {
+    "level": "easy",
+    "type": "single",
+    "topic": "Augustyn — przyczyny zalążkowe",
+    "q": "Co oznaczają „przyczyny zalążkowe” w koncepcji św. Augustyna?",
+    "o": [
+      "Możliwości zawarte w stworzeniu, które mogą urzeczywistniać się z czasem.",
+      "Siły przyrody działające niezależnie od Boga.",
+      "Cechy nabywane przez ćwiczenie i przekazywane potomstwu.",
+      "Mechanizmy wyboru partnerów przez organizmy."
+    ],
+    "a": 0,
+    "e": "Przyczyny zalążkowe oznaczają możliwości zawarte w stworzeniu od początku, których skutki mogą ujawniać się później. Nie jest to darwinowska teoria doboru naturalnego."
+  },
+  {
+    "level": "easy",
+    "type": "single",
+    "topic": "Augustyn — interpretacja Biblii",
+    "q": "Jak św. Augustyn odnosił się do dosłownego odczytywania biblijnych opisów stworzenia?",
+    "o": [
+      "Każdy fragment należy odczytywać dosłownie, niezależnie od rozumu.",
+      "Opisy biblijne nie mają żadnego znaczenia dla rozumienia stworzenia.",
+      "Fragmenty, których dosłowne odczytanie prowadzi do sprzeczności z rozumem, wymagają innej interpretacji.",
+      "Opisy stworzenia należy traktować jako szczegółowy podręcznik przyrodoznawstwa."
+    ],
+    "a": 2,
+    "e": "Augustyn dopuszczał interpretację wykraczającą poza dosłowne odczytanie tekstu. Religijny sens opisu stworzenia nie wymaga traktowania go jako szczegółowego opisu procesów przyrodniczych."
+  },
+  {
+    "level": "easy",
+    "type": "single",
+    "topic": "Ewolucja i teoria ewolucji",
+    "q": "Które zdanie poprawnie odróżnia ewolucję od teorii ewolucji?",
+    "o": [
+      "Ewolucja jest przekonaniem religijnym, a teoria ewolucji jego krytyką.",
+      "Ewolucja jest procesem przemian, a teoria ewolucji wyjaśnia jego mechanizmy.",
+      "Ewolucja dotyczy jednostek, a teoria ewolucji wyłącznie całego wszechświata.",
+      "Ewolucja i teoria ewolucji oznaczają dokładnie to samo."
+    ],
+    "a": 1,
+    "e": "Należy odróżnić zachodzący w przyrodzie proces ewolucji od teorii, która wyjaśnia jego przebieg i mechanizmy, m.in. dobór naturalny."
+  },
+  {
+    "level": "easy",
+    "type": "single",
+    "topic": "Darwin",
+    "q": "Na czym polegało główne osiągnięcie Karola Darwina w wyjaśnianiu ewolucji?",
+    "o": [
+      "Jako pierwszy zauważył, że przyroda podlega zmianom.",
+      "Wykazał, że gatunki są niezmienne.",
+      "Odkrył geny i wyjaśnił ich budowę.",
+      "Przedstawił dobór naturalny jako mechanizm wyjaśniający przemiany ewolucyjne."
+    ],
+    "a": 3,
+    "e": "Idea przemian gatunków istniała przed Darwinem. Jego zasadniczym osiągnięciem było rozwinięcie i uzasadnienie wyjaśnienia ewolucji poprzez dobór naturalny; niezależnie mechanizm ten sformułował także Alfred Russel Wallace."
+  },
+  {
+    "level": "easy",
+    "type": "single",
+    "topic": "Dobór naturalny",
+    "q": "Który przykład najlepiej ilustruje działanie doboru naturalnego?",
+    "o": [
+      "Osobniki z korzystną cechą dziedziczną pozostawiają więcej potomstwa, więc cecha staje się częstsza.",
+      "Osobniki zmieniają swoje cechy, ponieważ świadomie chcą lepiej przetrwać.",
+      "Środowisko wywołuje wyłącznie zmiany korzystne dla organizmów.",
+      "Każda cecha rozwinięta dzięki ćwiczeniu zostaje przekazana potomstwu."
+    ],
+    "a": 0,
+    "e": "Dobór naturalny wiąże dziedziczne różnice między osobnikami z różnicami w sukcesie rozrodczym. Cecha sprzyjająca pozostawianiu potomstwa w danych warunkach może stawać się częstsza w populacji."
+  },
+  {
+    "level": "easy",
+    "type": "tf",
+    "topic": "Dobór a przewidywanie",
+    "q": "Dobór naturalny przewiduje przyszłe warunki środowiska i przygotowuje do nich organizmy.",
+    "a": false,
+    "e": "Dobór naturalny działa w aktualnych warunkach na istniejącym zróżnicowaniu organizmów. Nie planuje zmian i nie przewiduje przyszłości."
+  },
+  {
+    "level": "easy",
+    "type": "match",
+    "topic": "Dobór naturalny i płciowy",
+    "q": "Dopasuj każdy przykład do właściwego mechanizmu.",
+    "pairs": [
+      [
+        "Dziedziczne ubarwienie utrudnia drapieżnikom dostrzeżenie osobnika, zwiększając jego szanse przeżycia i pozostawienia potomstwa.",
+        "Dobór naturalny"
+      ],
+      [
+        "Cecha zwiększa atrakcyjność osobnika dla partnerów, dzięki czemu częściej uczestniczy on w rozrodzie.",
+        "Dobór płciowy"
+      ]
+    ],
+    "e": "Pierwszy przykład dotyczy korzyści wynikającej z unikania drapieżników. Drugi ilustruje dobór płciowy, związany z różnicami w sukcesie zdobywania partnerów. Dobór płciowy jest szczególną postacią doboru."
+  },
+  {
+    "level": "easy",
+    "type": "single",
+    "topic": "Ślady historii ewolucyjnej",
+    "q": "Dlaczego przebieg nerwu krtaniowego wstecznego u żyrafy wspiera wyjaśnienie ewolucyjne?",
+    "o": [
+      "Pokazuje, że każda struktura organizmu ma najkrótszą możliwą budowę.",
+      "Dowodzi, że organizmy świadomie projektują swoje narządy.",
+      "Wskazuje, że budowa organizmu zachowuje ślady historii jego przodków.",
+      "Pokazuje, że dobór naturalny zawsze prowadzi do doskonałych rozwiązań."
+    ],
+    "a": 2,
+    "e": "Ewolucja przekształca odziedziczone struktury. Długa, okrężna droga nerwu u żyrafy odzwierciedla historię ewolucyjną tej struktury, zamiast odpowiadać najkrótszej możliwej trasie."
+  },
+  {
+    "level": "easy",
+    "type": "single",
+    "topic": "Paley — argument z projektu",
+    "q": "Jaki wniosek William Paley wyprowadzał z porównania organizmu do zegarka?",
+    "o": [
+      "Współdziałanie części organizmu jest skutkiem ich świadomych decyzji.",
+      "Podobnie jak budowa zegarka wskazuje na zegarmistrza, celowa organizacja przyrody wskazuje na Projektanta.",
+      "Wszystkie organizmy działają identycznie jak mechaniczne zegarki.",
+      "Złożoność organizmów dowodzi, że nie pełnią one żadnych funkcji."
+    ],
+    "a": 1,
+    "e": "Paley wnioskował o Projektancie na podstawie współdziałania części służących określonej funkcji. Analogia do zegarka stanowi argument z projektu, a nie twierdzenie, że organizmy są dosłownie zegarkami."
+  },
+  {
+    "level": "easy",
+    "type": "single",
+    "topic": "Inteligentny projekt",
+    "q": "Które twierdzenie najlepiej oddaje stanowisko zwolenników inteligentnego projektu?",
+    "o": [
+      "Organizmy świadomie wybierają cechy, które będą dziedziczyć ich potomkowie.",
+      "Wszystkie zmiany organizmów zachodzą bez udziału jakichkolwiek praw przyrody.",
+      "Gatunki nie wykazują żadnych podobieństw w swojej budowie.",
+      "Niektóre cechy organizmów najlepiej wyjaśnia działanie inteligentnej przyczyny."
+    ],
+    "a": 3,
+    "e": "Zwolennicy inteligentnego projektu przypisują niektóre cechy organizmów działaniu inteligentnej przyczyny. Pytanie dotyczy treści tego stanowiska; sama złożoność struktur nie dowodzi niemożliwości ich ewolucyjnego powstania."
+  },
+  {
+    "level": "easy",
+    "type": "single",
+    "topic": "Lamarck",
+    "q": "Które wyjaśnienie wydłużania szyi żyraf odpowiada klasycznej koncepcji Lamarcka?",
+    "o": [
+      "Sięganie po wysoko położone liście wydłużało szyję, a nabyta zmiana była przekazywana potomstwu.",
+      "Żyrafy z dziedzicznie dłuższą szyją pozostawiały więcej potomstwa niż pozostałe.",
+      "Żyrafy świadomie wybierały długość szyi swoich potomków.",
+      "Długość szyi pozostawała niezmienna w kolejnych pokoleniach."
+    ],
+    "a": 0,
+    "e": "W klasycznym ujęciu Lamarcka używanie narządu prowadzi do jego rozwoju, a nabyte zmiany są przekazywane potomstwu. Przykład z dziedzicznie dłuższą szyją i większą liczbą potomstwa ilustruje natomiast dobór naturalny."
+  }
+];
+
+const $=id=>document.getElementById(id);
+let index=0,selectedSingle=null,selectedMulti=new Set(),matchValues=[],locked=false,answers=[],points=0;
+const maxPoints=bank.reduce((s,q)=>s+levels[q.level].pts,0);
+
+function kindLabel(type){
+  return type==='single'?'Jedna poprawna odpowiedź':type==='tf'?'Prawda czy fałsz':type==='multi'?'Wybierz wszystkie poprawne':'Połącz w pary';
+}
+function shuffle(xs){const a=[...xs];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function sameSet(a,b){if(a.length!==b.length)return false;const x=[...a].sort((m,n)=>m-n),y=[...b].sort((m,n)=>m-n);return x.every((v,i)=>v===y[i]);}
+function matchCorrect(q){return q.pairs.every((p,i)=>matchValues[i]===p[1]);}
+function enableCheck(){
+  const q=bank[index];
+  let ready=false;
+  if(q.type==='single'||q.type==='tf') ready=selectedSingle!==null;
+  else if(q.type==='multi') ready=selectedMulti.size>0;
+  else if(q.type==='match') ready=q.pairs.every((_,i)=>Boolean(matchValues[i]));
+  $('check').disabled=!ready;
+}
+function resetState(){selectedSingle=null;selectedMulti=new Set();matchValues=[];locked=false;}
+
+function render(){
+  resetState();
+  const q=bank[index],lv=levels[q.level];
+  $('counter').textContent='Zadanie '+(index+1)+' z '+bank.length;
+  $('points').textContent='Punkty: '+points+' / '+maxPoints;
+  $('bar').style.width=(index/bank.length*100)+'%';
+  document.querySelector('.progress').setAttribute('aria-valuenow',index);
+  $('difficulty').textContent=lv.label;$('difficulty').className='difficulty '+lv.cls;
+  $('kind').textContent=kindLabel(q.type);
+  $('question').textContent=q.q;
+  $('instruction').textContent=q.type==='multi'?'Może być więcej niż jedna poprawna odpowiedź.':q.type==='match'?'W każdym wierszu wybierz pasujące pojęcie lub opis.':'';
+  $('feedback').hidden=true;$('feedback').replaceChildren();$('check').hidden=false;$('check').disabled=true;$('next').hidden=true;
+  const area=$('answerArea');area.replaceChildren();
+
+  if(q.type==='single'||q.type==='tf'){
+    const wrap=document.createElement('div');wrap.className='options';
+    if(q.type==='tf'){
+      const options=['Prawda','Fałsz'];
+      options.forEach((text,i)=>{
+        const b=document.createElement('button');b.className='option';b.type='button';b.setAttribute('aria-pressed','false');
+        const letter=document.createElement('span');letter.className='letter';letter.textContent=i===0?'P':'F';
+        const label=document.createElement('span');label.textContent=text;b.append(letter,label);
+        b.addEventListener('click',()=>{if(locked)return;selectedSingle=i===0;[...wrap.children].forEach(x=>{x.classList.remove('selected');x.setAttribute('aria-pressed','false')});b.classList.add('selected');b.setAttribute('aria-pressed','true');enableCheck()});
+        wrap.append(b);
+      });
+    }else{
+      const order=shuffle(q.o.map((_,i)=>i));
+      order.forEach((originalIndex,displayIndex)=>{
+        const b=document.createElement('button');b.className='option';b.type='button';b.setAttribute('aria-pressed','false');b.dataset.original=originalIndex;
+        const letter=document.createElement('span');letter.className='letter';letter.textContent='ABCD'[displayIndex];
+        const label=document.createElement('span');label.textContent=q.o[originalIndex];b.append(letter,label);
+        b.addEventListener('click',()=>{if(locked)return;selectedSingle=originalIndex;[...wrap.children].forEach(x=>{x.classList.remove('selected');x.setAttribute('aria-pressed','false')});b.classList.add('selected');b.setAttribute('aria-pressed','true');enableCheck()});
+        wrap.append(b);
+      });
+    }
+    area.append(wrap);
+  } else if(q.type==='multi'){
+    const wrap=document.createElement('div');wrap.className='options checks';
+    const order=shuffle(q.o.map((_,i)=>i));
+    order.forEach(originalIndex=>{
+      const b=document.createElement('button');b.className='option';b.type='button';b.setAttribute('aria-pressed','false');b.dataset.original=originalIndex;
+      const label=document.createElement('span');label.textContent=q.o[originalIndex];b.append(label);
+      b.addEventListener('click',()=>{if(locked)return;if(selectedMulti.has(originalIndex)){selectedMulti.delete(originalIndex);b.classList.remove('selected');b.setAttribute('aria-pressed','false')}else{selectedMulti.add(originalIndex);b.classList.add('selected');b.setAttribute('aria-pressed','true')}enableCheck()});
+      wrap.append(b);
+    });area.append(wrap);
+  } else {
+    const options=shuffle([...new Set(q.pairs.map(p=>p[1]))]);
+    const wrap=document.createElement('div');wrap.className='match-grid';
+    q.pairs.forEach((pair,i)=>{
+      const row=document.createElement('div');row.className='match-row';row.dataset.index=i;
+      const left=document.createElement('div');left.className='match-left';left.textContent=pair[0];
+      const sel=document.createElement('select');sel.setAttribute('aria-label','Dopasuj do: '+pair[0]);
+      const first=document.createElement('option');first.value='';first.textContent='— wybierz —';sel.append(first);
+      options.forEach(opt=>{const o=document.createElement('option');o.value=opt;o.textContent=opt;sel.append(o)});
+      sel.addEventListener('change',()=>{if(locked)return;matchValues[i]=sel.value;enableCheck()});
+      row.append(left,sel);wrap.append(row);
+    });area.append(wrap);
+  }
+  $('question').focus();window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function check(){
+  if(locked||$('check').disabled)return;
+  const q=bank[index],lv=levels[q.level];let ok=false;let chosen='';
+  if(q.type==='single'){ok=selectedSingle===q.a;chosen=q.o[selectedSingle]}
+  else if(q.type==='tf'){ok=selectedSingle===q.a;chosen=selectedSingle?'Prawda':'Fałsz'}
+  else if(q.type==='multi'){ok=sameSet([...selectedMulti],q.a);chosen=[...selectedMulti].map(i=>q.o[i]).join('; ')}
+  else {ok=matchCorrect(q);chosen=q.pairs.map((p,i)=>p[0]+' → '+(matchValues[i]||'—')).join('; ')}
+  locked=true;if(ok)points+=lv.pts;
+  answers.push({q:q,ok:ok,chosen:chosen,earned:ok?lv.pts:0});
+
+  const area=$('answerArea');
+  if(q.type==='single'||q.type==='tf'){
+    [...area.querySelectorAll('.option')].forEach((b,i)=>{
+      b.disabled=true;
+      const val=q.type==='tf'?(i===0):Number(b.dataset.original);
+      if(val===q.a)b.classList.add('correct');
+      else if(val===selectedSingle)b.classList.add('wrong');
+    });
+  } else if(q.type==='multi'){
+    [...area.querySelectorAll('.option')].forEach(b=>{
+      b.disabled=true;
+      const originalIndex=Number(b.dataset.original);
+      if(q.a.includes(originalIndex))b.classList.add('correct');
+      else if(selectedMulti.has(originalIndex))b.classList.add('wrong');
+    });
+  } else {
+    [...area.querySelectorAll('.match-row')].forEach((row,i)=>{
+      const sel=row.querySelector('select');sel.disabled=true;
+      row.classList.add(matchValues[i]===q.pairs[i][1]?'good':'bad');
+    });
+  }
+
+  const title=document.createElement('strong');title.textContent=ok?'Dobra odpowiedź · +'+lv.pts+(lv.pts===1?' pkt':' pkt'):'Tym razem bez punktów';
+  const correct=document.createElement('p');
+  if(q.type==='single')correct.textContent='Poprawna odpowiedź: '+q.o[q.a];
+  else if(q.type==='tf')correct.textContent='Poprawna odpowiedź: '+(q.a?'Prawda':'Fałsz');
+  else if(q.type==='multi')correct.textContent='Poprawne odpowiedzi: '+q.a.map(i=>q.o[i]).join('; ')+'.';
+  else correct.textContent='Poprawne połączenia: '+q.pairs.map(p=>p[0]+' → '+p[1]).join('; ')+'.';
+  const exp=document.createElement('p');exp.textContent=q.e;
+  $('feedback').replaceChildren(title,correct,exp);$('feedback').hidden=false;
+  $('points').textContent='Punkty: '+points+' / '+maxPoints;
+  $('bar').style.width=((index+1)/bank.length*100)+'%';document.querySelector('.progress').setAttribute('aria-valuenow',index+1);
+  $('check').hidden=true;$('next').hidden=false;$('next').textContent=index===bank.length-1?'Zobacz wynik →':'Następne zadanie →';$('next').focus();
+}
+
+function finish(){
+  $('quiz').hidden=true;$('result').hidden=false;
+  const pct=Math.round(points/maxPoints*100);
+  $('score').textContent=points+' / '+maxPoints;
+  $('summary').textContent=pct+'% możliwych punktów. '+(pct>=90?'Bardzo dobra znajomość pojęć i zależności.':pct>=70?'Dobra baza. Przejrzyj jeszcze zadania oznaczone jako „do powtórki”.':pct>=50?'Najważniejsze podstawy są już uchwycone, ale warto wrócić do pojęć i powiązań między nimi.':'Warto jeszcze raz powtórzyć materiał, szczególnie zagadnienia wskazane poniżej.');
+  const missed=answers.filter(a=>!a.ok).map(a=>a.q.topic);
+  $('repeat').textContent=missed.length?'Do powtórki: '+[...new Set(missed)].join(', ')+'.':'Bez błędów — najważniejsze pojęcia dotyczące człowieka i ewolucji są opanowane.';
+  const review=$('review');review.replaceChildren();
+  answers.forEach((a,i)=>{
+    const div=document.createElement('div');div.className='review';
+    const status=document.createElement('span');status.className='status'+(a.ok?'':' miss');status.textContent=a.ok?'✓ Poprawnie · '+a.earned+' pkt':'✕ Do powtórki';
+    const h=document.createElement('h3');h.textContent=(i+1)+'. '+a.q.q;
+    const own=document.createElement('p');own.textContent='Twoja odpowiedź: '+a.chosen;
+    const exp=document.createElement('p');exp.className='muted';exp.textContent=a.q.e;
+    const correct=document.createElement('p');correct.textContent='Poprawna odpowiedź: '+(a.q.type==='single'?a.q.o[a.q.a]:a.q.type==='tf'?(a.q.a?'Prawda':'Fałsz'):a.q.pairs.map(p=>p[0]+' → '+p[1]).join('; '));div.append(status,h,own);if(!a.ok)div.append(correct);div.append(exp);review.append(div);
+  });
+  $('resultTitle').focus();window.scrollTo(0,0);
+}
+
+function start(){index=0;answers=[];points=0;$('intro').hidden=true;$('result').hidden=true;$('quiz').hidden=false;render()}
+$('start').addEventListener('click',start);
+$('restart').addEventListener('click',start);
+$('check').addEventListener('click',check);
+$('next').addEventListener('click',()=>{if(!locked)return;if(index<bank.length-1){index++;render()}else finish()});
+
+</script></body></html>
