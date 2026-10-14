@@ -16,5 +16,29 @@ service cloud.firestore {
 
       allow update, delete: if false;
     }
+    // Głosowanie: Skąd się wzięło wszystko to, co istnieje?
+    match /originPollSessions/{sessionId} {
+      allow get: if request.auth != null;
+      allow list: if false;
+      allow create: if request.auth != null
+        && sessionId.matches('[A-Z0-9_-]{1,32}')
+        && request.resource.data.keys().hasAll(['poll', 'createdAt', 'createdBy'])
+        && request.resource.data.keys().hasOnly(['poll', 'createdAt', 'createdBy'])
+        && request.resource.data.poll == 'origin'
+        && request.resource.data.createdBy == request.auth.uid
+        && request.resource.data.createdAt == request.time;
+      allow update, delete: if false;
+      match /votes/{userId} {
+        allow read: if request.auth != null;
+        allow create: if request.auth != null
+          && request.auth.uid == userId
+          && exists(/databases/$(database)/documents/originPollSessions/$(sessionId))
+          && request.resource.data.keys().hasAll(['choice', 'createdAt'])
+          && request.resource.data.keys().hasOnly(['choice', 'createdAt'])
+          && request.resource.data.choice in ['creationism', 'evolutionism']
+          && request.resource.data.createdAt == request.time;
+        allow update, delete: if false;
+      }
+    }
   }
 }

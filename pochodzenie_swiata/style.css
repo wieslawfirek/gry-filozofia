@@ -1,0 +1,10 @@
+.option { display:flex; align-items:flex-start; gap:14px; cursor:pointer; }
+.option input { flex:none; margin-top:5px; width:18px; height:18px; accent-color:#38bdf8; }
+.option:has(input:checked) { border-color:#38bdf8; background:rgba(56,189,248,.12); }
+.option:focus-within { outline:2px solid #38bdf8; outline-offset:3px; }
+a.ghost-btn { display:inline-block; text-decoration:none; }
+.bar-fill { min-width:0; }
+#voteConfirmation { background:rgba(52,211,153,.12); color:#a7f3d0; }
+strong { overflow-wrap:anywhere; }
+@media(max-width:480px) { .bar-label { flex-wrap:wrap; } }
+@media(prefers-reduced-motion:reduce) { *, *::before, *::after { animation:none!important; transition:none!important; } }

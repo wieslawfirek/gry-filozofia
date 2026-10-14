@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#111827">
+  <title>Skąd się wzięło wszystko to, co istnieje?</title>
+  <link rel="stylesheet" href="../obraz_swiata/style.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="app-shell">
+  <header class="topbar"><div><p class="eyebrow">Głosowanie filozoficzne</p><h1>Skąd się wzięło wszystko to, co istnieje?</h1></div></header>
+  <section id="setup" class="card screen active">
+    <h2>Dołącz do głosowania</h2>
+    <p class="lead">Wpisz kod podany przez prowadzącego. Wybierzesz jedną z dwóch odpowiedzi. Głosowanie jest anonimowe.</p>
+    <form id="joinForm">
+      <label class="field-label" for="sessionCode">Kod sesji</label>
+      <input id="sessionCode" class="text-input" maxlength="32" pattern="[A-Za-z0-9_-]{1,32}" required autocomplete="off" placeholder="np. POCHODZENIE-2026-A">
+      <div class="actions"><button id="joinBtn" class="primary-btn">Przejdź do pytania</button></div>
+    </form>
+    <div class="actions"><a class="ghost-btn" href="?view=teacher">Panel prowadzącego</a><a class="ghost-btn" href="../">← Strona główna</a></div>
+  </section>
+  <section id="teacher" class="card screen">
+    <p class="eyebrow">Panel prowadzącego</p><h2>Utwórz lub otwórz sesję</h2>
+    <p class="lead">Wymyśl kod dla tej grupy. Nowy kod rozpoczyna głosowanie od zera. Użycie wcześniejszego kodu otwiera zapisane wyniki.</p>
+    <form id="teacherForm">
+      <label class="field-label" for="teacherCode">Kod sesji</label>
+      <input id="teacherCode" class="text-input" maxlength="32" pattern="[A-Za-z0-9_-]{1,32}" required autocomplete="off" placeholder="np. POCHODZENIE-2026-A">
+      <p class="hint">Litery A–Z, cyfry, myślnik lub podkreślenie; do 32 znaków. Na kolejny rok wybierz nowy kod, np. POCHODZENIE-2027-A.</p>
+      <div class="actions"><button id="openBtn" class="primary-btn">Utwórz / otwórz sesję</button><a href="./" class="ghost-btn">Widok studenta</a></div>
+    </form>
+  </section>
+  <section id="poll" class="card screen">
+    <p class="eyebrow">Twój głos · <span id="pollCode"></span></p>
+    <h2>Skąd się wzięło wszystko to, co istnieje?</h2>
+    <p class="lead">Wybierz stanowisko, które jest Ci bliższe. To punkt wyjścia do dyskusji.</p>
+    <form id="voteForm">
+      <div class="answers">
+        <label class="answer-btn option"><input type="radio" name="choice" value="creationism" required><span>1) Wszystko, co istnieje, powstało dzięki stworzeniu przez Boga. Jest to twierdzenie nurtu zwanego kreacjonizmem (od łac. <i>creatio</i> – stwarzanie).</span></label>
+        <label class="answer-btn option"><input type="radio" name="choice" value="evolutionism" required><span>2) Wszystko, co istnieje, powstało na drodze stopniowej ewolucji. Tak twierdzą zwolennicy ewolucjonizmu (od łac. <i>evolutio</i> – rozwój).</span></label>
+      </div>
+      <div class="actions"><button id="voteBtn" class="primary-btn">Oddaj głos</button><button id="changeCode" class="ghost-btn" type="button">Zmień kod sesji</button></div>
+    </form>
+    <p class="hint">Po wysłaniu głosu zobaczysz wyniki grupy. W tej przeglądarce możesz zagłosować raz na dany kod.</p>
+  </section>
+  <section id="results" class="card screen wide-card">
+    <p id="voteConfirmation" class="notice hidden"></p>
+    <div class="results-header"><div><p class="eyebrow">Wyniki na żywo</p><h2>Skąd się wzięło wszystko to, co istnieje?</h2><p class="lead">Sesja: <strong id="resultCode"></strong> · oddane głosy: <strong id="total">—</strong></p></div><button id="newSession" class="ghost-btn" type="button">Zmień sesję</button></div>
+    <p id="liveStatus" class="hint" role="status">Łączenie z wynikami…</p>
+    <div class="bars">
+      <div class="bar-block"><div class="bar-label"><span>1. Kreacjonizm</span><span id="creationismCount">—</span></div><div class="bar-track"><div id="creationismBar" class="bar-fill philosophical" style="width:0"></div></div></div>
+      <div class="bar-block"><div class="bar-label"><span>2. Ewolucjonizm</span><span id="evolutionismCount">—</span></div><div class="bar-track"><div id="evolutionismBar" class="bar-fill scientific" style="width:0"></div></div></div>
+    </div>
+    <p id="emptyResults" class="hint hidden">Jeszcze nikt nie zagłosował. Wyniki pojawią się tutaj automatycznie.</p>
+    <div id="shareTools" class="teacher-tools hidden">
+      <h3>Udostępnij głosowanie studentom</h3><p class="lead">Kod do wpisania: <strong id="shareCode"></strong></p>
+      <div class="teacher-share-grid"><div class="qr-card"><div id="studentQr"></div></div><div>
+        <label class="field-label" for="studentLink">Link dla studentów</label><input id="studentLink" class="text-input link-input" readonly>
+        <div class="actions"><button id="copyLink" class="secondary-btn" type="button">Kopiuj link</button><button id="downloadQr" class="secondary-btn" type="button">Pobierz QR</button></div><p id="copyStatus" class="hint" role="status"></p>
+      </div></div><p class="hint">Zachowaj adres tego widoku, żeby później wrócić do wyników. Kod sesji oddziela grupy; nie jest hasłem chroniącym wyniki.</p>
+    </div>
+  </section>
+  <p id="error" class="notice warning hidden" role="alert"></p>
+  <noscript><p class="notice warning">Włącz JavaScript, aby korzystać z głosowania.</p></noscript>
+</main>
+<footer class="footer">Anonimowe głosowanie dydaktyczne</footer>
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+<script type="module" src="app.js?v=1"></script>
+</body>
+</html>
