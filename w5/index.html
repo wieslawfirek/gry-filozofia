@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#172b3a"><title>Czy jesteśmy zwierzętami? Człowiek a osoba — test po wykładzie 5</title>
+<style>
+:root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#172b3a;background:#f4f0e8}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 90% 0,#f7dca5,transparent 35%),#f4f0e8;min-height:100vh}main{max-width:920px;margin:auto;padding:30px 20px 70px}a{color:#8a4524}header{display:flex;justify-content:space-between;gap:15px;font-size:.9rem;margin-bottom:34px}.tag{text-transform:uppercase;letter-spacing:.14em;font-size:.74rem;font-weight:800;color:#8a4524}h1,h2,h3{font-family:Georgia,serif;line-height:1.2}h1{font-size:clamp(2rem,6vw,3.7rem);margin:14px 0}h2{font-size:clamp(1.35rem,4vw,2rem);margin:16px 0 24px}p{line-height:1.62}.muted{color:#52616b}.card{background:#fffdf9;border:1px solid #ded3c3;border-radius:24px;padding:clamp(22px,5vw,42px);box-shadow:0 16px 45px #172b3a10}.pills{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0}.pill,.difficulty{background:#f0e8dc;border-radius:30px;padding:8px 14px;font-size:.88rem}.difficulty{display:inline-block;margin-bottom:8px;font-weight:800}.difficulty.easy{background:#e5f2ea;color:#23603f}.difficulty.medium{background:#f8edcf;color:#7a5311}.difficulty.hard{background:#f4dfdc;color:#843d35}button,select{font:inherit}button{cursor:pointer;min-height:48px;border-radius:12px;border:2px solid transparent;padding:13px 19px}button:focus-visible,a:focus-visible,select:focus-visible{outline:3px solid #bd6537;outline-offset:3px}.primary{background:#172b3a;color:white;font-weight:760}.secondary{background:#eee5d8;color:#172b3a}.option{width:100%;text-align:left;background:white;border-color:#ded3c3;display:flex;gap:14px;align-items:center}.option:hover:not(:disabled){border-color:#a15a2f}.option.selected{background:#f8e6ce;border-color:#a15a2f}.option.correct{background:#e2f1e9;border-color:#28794e}.option.wrong{background:#fde7e4;border-color:#a53d31}.option:disabled{cursor:default;opacity:1}.letter{font-weight:800;background:#f0ebe4;border-radius:8px;padding:5px 10px;min-width:38px;text-align:center}.options{display:grid;gap:12px}.checks .option::before{content:"□";font-size:1.25rem;font-weight:800}.checks .option.selected::before{content:"☑"}.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}.meta{display:flex;justify-content:space-between;gap:12px;font-size:.9rem}.progress{height:8px;border-radius:10px;background:#e6ded2;overflow:hidden;margin:14px 0 26px}.progress span{display:block;height:100%;background:#b96639;transition:width .2s}.feedback{border-left:4px solid #b96639;padding:10px 16px;margin-top:22px;background:#f6efe5}.feedback p{margin:7px 0}.feedback ul{margin:9px 0 0;padding-left:20px;line-height:1.55}.match-grid{display:grid;gap:12px}.match-row{display:grid;grid-template-columns:minmax(120px,.75fr) minmax(190px,1.25fr);gap:12px;align-items:center;padding:12px;border:1px solid #e2d8ca;border-radius:14px;background:#fff}.match-left{font-weight:800}.match-row select{width:100%;min-height:46px;border:1px solid #cfc2b1;border-radius:10px;padding:8px;background:white;color:#172b3a}.match-row.good{border-color:#28794e;background:#eef8f2}.match-row.bad{border-color:#a53d31;background:#fff0ee}.big{font-size:clamp(3rem,12vw,5rem);font-family:Georgia,serif;margin:18px 0 0}.review{padding:20px 0;border-top:1px solid #ded3c3}.review h3{font-size:1rem;line-height:1.5;margin-bottom:8px}.review p{font-size:.95rem;margin:7px 0}.status{font-weight:800;color:#28794e}.status.miss{color:#a53d31}.round-note{color:#8a4524;font-weight:750;margin-top:-14px;margin-bottom:20px}footer{font-size:.8rem;color:#52616b;line-height:1.6;margin-top:25px}[hidden]{display:none!important}@media(max-width:620px){header{display:block}header span{display:block;margin-top:8px}.match-row{grid-template-columns:1fr}.card{border-radius:18px}}@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body><main>
+<header><a href="../">← Wszystkie gry</a><span>Wykład 5 · dr Wiesław Firek</span></header>
+
+<section id="intro" class="card">
+<div class="tag">Gra powtórkowa po wykładzie</div>
+<h1>Czy jesteśmy zwierzętami? Człowiek a osoba</h1>
+<p class="muted">Definicja człowieka, świadomość i kryteria statusu osoby.</p>
+<div class="pills"><span class="pill">15 pytań</span><span class="pill">15 pkt do zdobycia</span><span class="pill">Bez limitu czasu</span></div>
+<p>W każdym pytaniu wybierz jedną odpowiedź. Wybierz odpowiedź i kliknij „Sprawdź odpowiedź”. Po każdym pytaniu zobaczysz wynik i wyjaśnienie. Każda poprawna odpowiedź to 1 punkt.</p>
+<button id="start" class="primary">Rozpocznij test →</button>
+</section>
+
+<section id="quiz" class="card" hidden>
+<div class="meta"><span id="counter"></span><span id="points"></span></div>
+<div class="progress" role="progressbar" aria-label="Postęp gry" aria-valuemin="0" aria-valuemax="15" aria-valuenow="0"><span id="bar"></span></div>
+<div id="difficulty" class="difficulty" hidden></div>
+<div id="kind" class="tag"></div>
+<h2 id="question" tabindex="-1"></h2>
+<p id="instruction" class="round-note"></p>
+<div id="answerArea"></div>
+<div id="feedback" class="feedback" role="status" aria-live="polite" hidden></div>
+<div class="actions"><button id="check" class="primary" disabled>Sprawdź odpowiedź</button><button id="next" class="primary" hidden>Następne zadanie →</button></div>
+</section>
+
+<section id="result" class="card" hidden>
+<div class="tag">Podsumowanie</div><h1 id="resultTitle" tabindex="-1">Twój wynik</h1>
+<div id="score" class="big"></div><p id="summary"></p><p id="repeat" class="muted"></p>
+<div class="actions"><button id="restart" class="primary">Rozwiąż ponownie</button></div>
+<h2>Przegląd zadań</h2><div id="review"></div>
+</section>
+
+<footer>Test służy powtórce po wykładzie 5. Wynik nie jest wysyłany ani zapisywany na serwerze.</footer>
+<noscript><p>Aby rozwiązać grę, włącz JavaScript w przeglądarce.</p></noscript>
+
+</main><script>
+'use strict';
+
+const levels={
+  easy:{label:'Łatwe · 1 pkt',cls:'easy',pts:1},
+  medium:{label:'Średnie · 2 pkt',cls:'medium',pts:2},
+  hard:{label:'Trudne · 3 pkt',cls:'hard',pts:3}
+};
+
+const bank=[
+  {
+    "level": "easy",
+    "type": "single",
+    "topic": "Definicja człowieka",
+    "q": "Definicja animal rationale określa człowieka jako „zwierzę rozumne”. Jaką rolę odgrywa w niej rozum?",
+    "o": [
+      "Wyznacza próg, po którego przekroczeniu jednostka biologicznie staje się człowiekiem.",
+      "Wskazuje cechę, która ma wyróżniać człowieka w obrębie świata zwierząt.",
+      "Wyjaśnia, w jaki sposób ciało i umysł tworzą jedność.",
+      "Uzasadnia, dlaczego interesy człowieka mają pierwszeństwo przed interesami innych zwierząt."
+    ],
+    "a": 1,
+    "e": "Zwierzę to szersza kategoria, do której należy człowiek. Rozum wskazuje cechę, która w tej definicji ma go wyróżniać."
+  },
+  {
+    "level": "easy",
+    "type": "single",
+    "topic": "Pochodzenie ewolucyjne",
+    "q": "Ktoś twierdzi, że o przynależności do gatunku ludzkiego decyduje zdolność do rozumowania. Jak odpowiedziałby zwolennik poglądu, że gatunek należy określać na podstawie pochodzenia ewolucyjnego?",
+    "o": [
+      "Zdolność rozumowania wyznacza granicę gatunku, jeśli jest typowa dla większości jego przedstawicieli.",
+      "Każda istota zdolna do rozumowania należy do gatunku ludzkiego, choć może pochodzić z innej linii ewolucyjnej.",
+      "Przynależność do gatunku ludzkiego zależy od możliwości rozwinięcia zdolności rozumowania w przyszłości.",
+      "Przynależność gatunkowa zależy od tego, do jakiej linii ewolucyjnej należy dana istota, nawet jeśli nie wykazuje ona zdolności uznawanej za typową dla gatunku."
+    ],
+    "a": 3,
+    "e": "W tym ujęciu podstawą klasyfikacji jest pochodzenie ewolucyjne. Typowe zdolności mogą się różnić między przedstawicielami gatunku."
+  },
+  {
+    "level": "easy",
+    "type": "single",
+    "topic": "Świadomość i AI",
+    "q": "System sztucznej inteligencji mówi o własnym lęku i opisuje go równie przekonująco jak człowiek. Jaki problem filozoficzny ujawnia ten przykład?",
+    "o": [
+      "Czy zachowanie typowe dla istoty świadomej wystarcza, by przypisać jej subiektywne przeżycia?",
+      "Czy zdolność wyrażania lęku dowodzi, że system rozumie przyczyny własnych decyzji?",
+      "Czy system, który potrafi opisać lęk, odczuwa go równie silnie jak człowiek?",
+      "Czy zdolność do opisywania lęku świadczy o umiejętności przewidywania przyszłych zagrożeń?"
+    ],
+    "a": 0,
+    "e": "Przykład pyta, czy przekonujący opis jest wystarczającą podstawą do wniosku, że system rzeczywiście czegoś doświadcza."
+  },
+  {
+    "level": "easy",
+    "type": "single",
+    "topic": "Prawa zwierząt",
+    "q": "Które pytanie najlepiej oddaje problem postawiony w wykładzie przez ruch na rzecz praw zwierząt?",
+    "o": [
+      "Czy podobieństwa między człowiekiem a innymi zwierzętami uzasadniają zmianę klasyfikacji biologicznej?",
+      "Które cechy anatomiczne pozwalają odróżnić ludzi od innych naczelnych?",
+      "Jakie różnice między człowiekiem a innymi zwierzętami uzasadniają odmienne traktowanie ich interesów?",
+      "Na jakim etapie ewolucji pojawiły się zachowania typowe dla współczesnego człowieka?"
+    ],
+    "a": 2,
+    "e": "Spór dotyczy tego, które różnice między istotami mają znaczenie moralne i mogą uzasadniać różne traktowanie ich interesów."
+  },
+  {
+    "level": "easy",
+    "type": "single",
+    "topic": "Człowiek a osoba",
+    "q": "Co wynika z rozróżnienia między „człowiekiem” a „osobą” w wykładzie?",
+    "o": [
+      "Oba pojęcia odnoszą się do tej samej grupy istot, ale stosuje się je w różnych dziedzinach.",
+      "Pojęcie „człowiek” dotyczy przynależności gatunkowej, a pojęcie „osoba” dotyczy statusu moralnego, którego podstawy wymagają osobnego uzasadnienia.",
+      "Pojęcie „osoba” dotyczy każdej istoty zdolnej do przestrzegania norm, a pojęcie „człowiek” dotyczy każdej istoty zdolnej do cierpienia.",
+      "Pojęcie „człowiek” dotyczy pochodzenia biologicznego, a pojęcie „osoba” oznacza wyłącznie społeczne uznanie."
+    ],
+    "a": 1,
+    "e": "Rozpoznanie gatunku odpowiada na pytanie biologiczne. Ustalenie statusu osoby wymaga wskazania podstaw praw lub zobowiązań moralnych."
+  },
+  {
+    "level": "easy",
+    "type": "single",
+    "topic": "Zobowiązania moralne",
+    "q": "W wykładzie pojawia się przykład Wielkiego Ptaka z „Ulicy Sezamkowej”. Po co zestawiono go z babcią i piłką bejsbolową?",
+    "o": [
+      "Aby pokazać, że wystarczy znać biologiczne pochodzenie istoty, by określić, jak wolno ją traktować.",
+      "Aby rozstrzygnąć, czy przypisywanie ludzkich cech postaciom fikcyjnym jest błędem.",
+      "Aby pokazać, że obowiązki moralne wynikają ze stopnia pokrewieństwa.",
+      "Aby skłonić do wskazania, jakie właściwości istoty sprawiają, że sposób jej traktowania podlega ocenie moralnej."
+    ],
+    "a": 3,
+    "e": "Eksperyment myślowy skłania do uzasadnienia, dlaczego określone działanie wobec jednej istoty byłoby krzywdą. Jedną z rozważanych podstaw jest zdolność do odczuwania bólu."
+  },
+  {
+    "level": "easy",
+    "type": "single",
+    "topic": "Kryterium genetyczne",
+    "q": "Co ujawnia przykład komórki pobranej z cebulki włosa w dyskusji o kryterium genetycznym Johna Noonana?",
+    "o": [
+      "Kryterium genetyczne wymaga ustalenia, czy dana istota potrafi rozpoznać własne ciało.",
+      "Status osoby zależy od tego, czy ludzki materiał genetyczny pochodzi od żyjącego człowieka.",
+      "Samo stwierdzenie obecności ludzkiego DNA nie rozstrzyga, czemu można przypisać status osoby.",
+      "Wiek organizmu decyduje o tym, czy jego DNA można uznać za ludzkie."
+    ],
+    "a": 2,
+    "e": "Ludzkie DNA może znajdować się także w pojedynczej komórce. Przykład ujawnia potrzebę wskazania, jakiemu bytowi przypisuje się status osoby."
+  },
+  {
+    "level": "easy",
+    "type": "single",
+    "topic": "Kryteria Mary Ann Warren",
+    "q": "Który zestaw najlepiej odpowiada kryteriom omawianym przy stanowisku Mary Ann Warren?",
+    "o": [
+      "Świadomość, rozumowanie, samodzielne działanie, zdolność komunikacji i samoświadomość.",
+      "Świadomość, rozumowanie, zdolność komunikacji, samoświadomość i społeczne uznanie.",
+      "Świadomość, rozumowanie, samodzielne działanie, ludzki genom i samoświadomość.",
+      "Świadomość, rozumowanie, zdolność komunikacji, samoświadomość i znajomość norm moralnych."
+    ],
+    "a": 0,
+    "e": "W prezentacji stanowisko Warren opisano przez pięć cech związanych ze zdolnościami istoty, w tym zdolność samodzielnego działania."
+  },
+  {
+    "level": "easy",
+    "type": "single",
+    "topic": "Kryterium społeczne",
+    "q": "Dwie istoty mają takie same zdolności poznawcze i tak samo odczuwają ból. Jedna jest otoczona troską, a druga żyje w całkowitej izolacji. Które kryterium pozwala przypisać im odmienny status wyłącznie z powodu tej różnicy?",
+    "o": [
+      "Kryterium genetyczne.",
+      "Kryterium poznawcze.",
+      "Kryterium zdolności do odczuwania.",
+      "Kryterium społeczne."
+    ],
+    "a": 3,
+    "e": "Kryterium społeczne wiąże status osoby z uznaniem lub troską ze strony innych. Z tego względu sytuacja obu istot może prowadzić do różnych ocen."
+  },
+  {
+    "level": "easy",
+    "type": "single",
+    "topic": "Odczuwanie i interesy moralne",
+    "q": "Zwierzę odczuwa ból, ale nie potrafi planować odległej przyszłości. Co wynika z ujęcia Petera Singera przedstawionego w wykładzie?",
+    "o": [
+      "Ochrona zwierzęcia zależy od tego, czy ludzie pozostają z nim w relacji.",
+      "Cierpienie zwierzęcia należy uwzględnić moralnie, a przyznanie mu pełnego statusu osoby pozostaje odrębną kwestią.",
+      "Cierpienie zwierzęcia ma znaczenie moralne dopiero wtedy, gdy rozumie ono przyczynę bólu.",
+      "Zdolność zwierzęcia do cierpienia przesądza, że przysługuje mu taki sam zestaw praw jak człowiekowi."
+    ],
+    "a": 1,
+    "e": "Zdolność do cierpienia daje podstawę do uwzględnienia interesów zwierzęcia. Zakres przysługujących mu praw wymaga osobnego uzasadnienia."
+  },
+  {
+    "level": "easy",
+    "type": "single",
+    "topic": "Potencjalność",
+    "q": "Co pozwala uchwycić przykład niemowlęcia w dyskusji o potencjalności?",
+    "o": [
+      "Różnicę między zdolnością do rozumowania a zdolnością do komunikowania wyników rozumowania.",
+      "Różnicę między posiadaniem ludzkiego DNA a społecznym uznaniem za osobę.",
+      "Różnicę między posiadaniem określonej zdolności teraz a możliwością rozwinięcia jej w przyszłości.",
+      "Różnicę między odczuwaniem bólu a umiejętnością wskazania jego przyczyny."
+    ],
+    "a": 2,
+    "e": "Niemowlę może w przyszłości rozwinąć zdolność planowania. Przykład pozwala zapytać, jakie znaczenie moralne ma już teraz sam potencjał rozwoju."
+  },
+  {
+    "level": "easy",
+    "type": "single",
+    "topic": "Stopniowalność statusu osoby",
+    "q": "Co wyróżnia stopniowalną koncepcję statusu osoby?",
+    "o": [
+      "Każda istota uzyskuje pełny status osoby po przekroczeniu tego samego progu rozwoju.",
+      "Istoty można porównywać pod względem zdolności, ale status osoby zawsze przyjmuje jedną z dwóch wartości.",
+      "Status osoby zmienia się wyłącznie wtedy, gdy wspólnota uzna, że ktoś naruszył jej normy.",
+      "Status osoby może zmieniać się stopniowo wraz z rozwojem lub utratą zdolności uznanych za istotne."
+    ],
+    "a": 3,
+    "e": "W tej koncepcji status osoby ma stopnie. Rozwój lub utrata istotnych zdolności może zmieniać ten status stopniowo."
+  },
+  {
+    "level": "easy",
+    "type": "single",
+    "topic": "Możliwość utraty praw",
+    "q": "Ktoś twierdzi, że sprawca wyjątkowo ciężkiego przestępstwa traci prawo do ochrony życia. Które założenie najlepiej oddaje logikę tego argumentu omawianą w wykładzie?",
+    "o": [
+      "Fundamentalne prawa można utracić wskutek poważnego naruszenia norm moralnych.",
+      "Sprawca traci część zdolności poznawczych wskutek popełnienia przestępstwa.",
+      "Ochrona życia jest proporcjonalna do zdolności odczuwania bólu.",
+      "Każdy członek gatunku ludzkiego zachowuje pełnię praw niezależnie od swojego postępowania."
+    ],
+    "a": 0,
+    "e": "Argument opiera się na spornym założeniu, że postępowanie sprawcy może pozbawić go podstawowego prawa, jakim jest ochrona życia."
+  },
+  {
+    "level": "easy",
+    "type": "single",
+    "topic": "Status osoby poza gatunkiem ludzkim",
+    "q": "Wyobraź sobie androida Datę, który rozumuje, samodzielnie działa, komunikuje się i jest samoświadomy. W czym oceny oparte na kryterium genetycznym i na kryteriach poznawczych mogą się różnić?",
+    "o": [
+      "Oba podejścia wykluczą możliwość uznania Daty za osobę ze względu na jego pochodzenie.",
+      "Kryterium genetyczne pozwoli uznać Datę za osobę na podstawie podobieństwa do ludzi, a kryteria poznawcze będą wymagały ludzkiego DNA.",
+      "Brak ludzkiego DNA wykluczy Datę według kryterium genetycznego, a jego zdolności przemówią za uznaniem go za osobę według kryteriów poznawczych.",
+      "Oba podejścia uzależnią ocenę Daty od tego, czy inni się o niego troszczą."
+    ],
+    "a": 2,
+    "e": "Kryterium genetyczne wymaga ludzkiego DNA. W kryteriach poznawczych liczą się zdolności, które w eksperymencie myślowym przypisano Dacie."
+  },
+  {
+    "level": "easy",
+    "type": "single",
+    "topic": "Podstawy ochrony moralnej",
+    "q": "Przyjmijmy, że pewna istota nie spełnia przyjętego kryterium pełnego statusu osoby. Który wniosek jest zgodny z końcową częścią wykładu?",
+    "o": [
+      "Dopuszczalne działania wobec tej istoty zależą wyłącznie od jej przynależności gatunkowej.",
+      "Nadal mogą istnieć powody, by ją chronić, na przykład ze względu na zdolność do cierpienia lub relacje z innymi.",
+      "Obowiązek ochrony powstaje dopiero wtedy, gdy istota może sama domagać się swoich praw.",
+      "Każdy obowiązek ochrony tej istoty oznacza przyznanie jej pełnego statusu osoby."
+    ],
+    "a": 1,
+    "e": "Ochronę można uzasadniać zdolnością istoty do cierpienia lub jej relacjami z innymi. Takie uzasadnienie może obowiązywać niezależnie od rozstrzygnięcia o pełnym statusie osoby."
+  }
+];
+
+const $=id=>document.getElementById(id);
+let index=0,selectedSingle=null,selectedMulti=new Set(),matchValues=[],locked=false,answers=[],points=0;
+const maxPoints=bank.reduce((s,q)=>s+levels[q.level].pts,0);
+
+function kindLabel(type){
+  return type==='single'?'Jedna poprawna odpowiedź':type==='tf'?'Prawda czy fałsz':type==='multi'?'Wybierz wszystkie poprawne':'Połącz w pary';
+}
+function shuffle(xs){const a=[...xs];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function sameSet(a,b){if(a.length!==b.length)return false;const x=[...a].sort((m,n)=>m-n),y=[...b].sort((m,n)=>m-n);return x.every((v,i)=>v===y[i]);}
+function matchCorrect(q){return q.pairs.every((p,i)=>matchValues[i]===p[1]);}
+function enableCheck(){
+  const q=bank[index];
+  let ready=false;
+  if(q.type==='single'||q.type==='tf') ready=selectedSingle!==null;
+  else if(q.type==='multi') ready=selectedMulti.size>0;
+  else if(q.type==='match') ready=q.pairs.every((_,i)=>Boolean(matchValues[i]));
+  $('check').disabled=!ready;
+}
+function resetState(){selectedSingle=null;selectedMulti=new Set();matchValues=[];locked=false;}
+
+function render(){
+  resetState();
+  const q=bank[index],lv=levels[q.level];
+  $('counter').textContent='Zadanie '+(index+1)+' z '+bank.length;
+  $('points').textContent='Punkty: '+points+' / '+maxPoints;
+  $('bar').style.width=(index/bank.length*100)+'%';
+  document.querySelector('.progress').setAttribute('aria-valuenow',index);
+  $('difficulty').textContent=lv.label;$('difficulty').className='difficulty '+lv.cls;
+  $('kind').textContent=kindLabel(q.type);
+  $('question').textContent=q.q;
+  $('instruction').textContent=q.type==='multi'?'Może być więcej niż jedna poprawna odpowiedź.':q.type==='match'?'W każdym wierszu wybierz pasujące pojęcie lub opis.':'';
+  $('feedback').hidden=true;$('feedback').replaceChildren();$('check').hidden=false;$('check').disabled=true;$('next').hidden=true;
+  const area=$('answerArea');area.replaceChildren();
+
+  if(q.type==='single'||q.type==='tf'){
+    const wrap=document.createElement('div');wrap.className='options';
+    if(q.type==='tf'){
+      const options=['Prawda','Fałsz'];
+      options.forEach((text,i)=>{
+        const b=document.createElement('button');b.className='option';b.type='button';b.setAttribute('aria-pressed','false');
+        const letter=document.createElement('span');letter.className='letter';letter.textContent=i===0?'P':'F';
+        const label=document.createElement('span');label.textContent=text;b.append(letter,label);
+        b.addEventListener('click',()=>{if(locked)return;selectedSingle=i===0;[...wrap.children].forEach(x=>{x.classList.remove('selected');x.setAttribute('aria-pressed','false')});b.classList.add('selected');b.setAttribute('aria-pressed','true');enableCheck()});
+        wrap.append(b);
+      });
+    }else{
+      const order=shuffle(q.o.map((_,i)=>i));
+      order.forEach((originalIndex,displayIndex)=>{
+        const b=document.createElement('button');b.className='option';b.type='button';b.setAttribute('aria-pressed','false');b.dataset.original=originalIndex;
+        const letter=document.createElement('span');letter.className='letter';letter.textContent='ABCD'[displayIndex];
+        const label=document.createElement('span');label.textContent=q.o[originalIndex];b.append(letter,label);
+        b.addEventListener('click',()=>{if(locked)return;selectedSingle=originalIndex;[...wrap.children].forEach(x=>{x.classList.remove('selected');x.setAttribute('aria-pressed','false')});b.classList.add('selected');b.setAttribute('aria-pressed','true');enableCheck()});
+        wrap.append(b);
+      });
+    }
+    area.append(wrap);
+  } else if(q.type==='multi'){
+    const wrap=document.createElement('div');wrap.className='options checks';
+    const order=shuffle(q.o.map((_,i)=>i));
+    order.forEach(originalIndex=>{
+      const b=document.createElement('button');b.className='option';b.type='button';b.setAttribute('aria-pressed','false');b.dataset.original=originalIndex;
+      const label=document.createElement('span');label.textContent=q.o[originalIndex];b.append(label);
+      b.addEventListener('click',()=>{if(locked)return;if(selectedMulti.has(originalIndex)){selectedMulti.delete(originalIndex);b.classList.remove('selected');b.setAttribute('aria-pressed','false')}else{selectedMulti.add(originalIndex);b.classList.add('selected');b.setAttribute('aria-pressed','true')}enableCheck()});
+      wrap.append(b);
+    });area.append(wrap);
+  } else {
+    const options=shuffle([...new Set(q.pairs.map(p=>p[1]))]);
+    const wrap=document.createElement('div');wrap.className='match-grid';
+    q.pairs.forEach((pair,i)=>{
+      const row=document.createElement('div');row.className='match-row';row.dataset.index=i;
+      const left=document.createElement('div');left.className='match-left';left.textContent=pair[0];
+      const sel=document.createElement('select');sel.setAttribute('aria-label','Dopasuj do: '+pair[0]);
+      const first=document.createElement('option');first.value='';first.textContent='— wybierz —';sel.append(first);
+      options.forEach(opt=>{const o=document.createElement('option');o.value=opt;o.textContent=opt;sel.append(o)});
+      sel.addEventListener('change',()=>{if(locked)return;matchValues[i]=sel.value;enableCheck()});
+      row.append(left,sel);wrap.append(row);
+    });area.append(wrap);
+  }
+  $('question').focus();window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function check(){
+  if(locked||$('check').disabled)return;
+  const q=bank[index],lv=levels[q.level];let ok=false;let chosen='';
+  if(q.type==='single'){ok=selectedSingle===q.a;chosen=q.o[selectedSingle]}
+  else if(q.type==='tf'){ok=selectedSingle===q.a;chosen=selectedSingle?'Prawda':'Fałsz'}
+  else if(q.type==='multi'){ok=sameSet([...selectedMulti],q.a);chosen=[...selectedMulti].map(i=>q.o[i]).join('; ')}
+  else {ok=matchCorrect(q);chosen=q.pairs.map((p,i)=>p[0]+' → '+(matchValues[i]||'—')).join('; ')}
+  locked=true;if(ok)points+=lv.pts;
+  answers.push({q:q,ok:ok,chosen:chosen,earned:ok?lv.pts:0});
+
+  const area=$('answerArea');
+  if(q.type==='single'||q.type==='tf'){
+    [...area.querySelectorAll('.option')].forEach((b,i)=>{
+      b.disabled=true;
+      const val=q.type==='tf'?(i===0):Number(b.dataset.original);
+      if(val===q.a)b.classList.add('correct');
+      else if(val===selectedSingle)b.classList.add('wrong');
+    });
+  } else if(q.type==='multi'){
+    [...area.querySelectorAll('.option')].forEach(b=>{
+      b.disabled=true;
+      const originalIndex=Number(b.dataset.original);
+      if(q.a.includes(originalIndex))b.classList.add('correct');
+      else if(selectedMulti.has(originalIndex))b.classList.add('wrong');
+    });
+  } else {
+    [...area.querySelectorAll('.match-row')].forEach((row,i)=>{
+      const sel=row.querySelector('select');sel.disabled=true;
+      row.classList.add(matchValues[i]===q.pairs[i][1]?'good':'bad');
+    });
+  }
+
+  const title=document.createElement('strong');title.textContent=ok?'Dobra odpowiedź · +'+lv.pts+(lv.pts===1?' pkt':' pkt'):'Tym razem bez punktów';
+  const correct=document.createElement('p');
+  if(q.type==='single')correct.textContent='Poprawna odpowiedź: '+q.o[q.a];
+  else if(q.type==='tf')correct.textContent='Poprawna odpowiedź: '+(q.a?'Prawda':'Fałsz');
+  else if(q.type==='multi')correct.textContent='Poprawne odpowiedzi: '+q.a.map(i=>q.o[i]).join('; ')+'.';
+  else correct.textContent='Poprawne połączenia: '+q.pairs.map(p=>p[0]+' → '+p[1]).join('; ')+'.';
+  const exp=document.createElement('p');exp.textContent=q.e;
+  $('feedback').replaceChildren(title,correct,exp);$('feedback').hidden=false;
+  $('points').textContent='Punkty: '+points+' / '+maxPoints;
+  $('bar').style.width=((index+1)/bank.length*100)+'%';document.querySelector('.progress').setAttribute('aria-valuenow',index+1);
+  $('check').hidden=true;$('next').hidden=false;$('next').textContent=index===bank.length-1?'Zobacz wynik →':'Następne zadanie →';$('next').focus();
+}
+
+function finish(){
+  $('quiz').hidden=true;$('result').hidden=false;
+  const pct=Math.round(points/maxPoints*100);
+  $('score').textContent=points+' / '+maxPoints;
+  $('summary').textContent=pct+'% możliwych punktów. '+(pct>=90?'Bardzo dobra znajomość pojęć i zależności.':pct>=70?'Dobra baza. Przejrzyj jeszcze zadania oznaczone jako „do powtórki”.':pct>=50?'Najważniejsze podstawy są już uchwycone, ale warto wrócić do pojęć i powiązań między nimi.':'Warto jeszcze raz powtórzyć materiał, szczególnie zagadnienia wskazane poniżej.');
+  const missed=answers.filter(a=>!a.ok).map(a=>a.q.topic);
+  $('repeat').textContent=missed.length?'Do powtórki: '+[...new Set(missed)].join(', ')+'.':'Wszystkie odpowiedzi są poprawne.';
+  const review=$('review');review.replaceChildren();
+  answers.forEach((a,i)=>{
+    const div=document.createElement('div');div.className='review';
+    const status=document.createElement('span');status.className='status'+(a.ok?'':' miss');status.textContent=a.ok?'✓ Poprawnie · '+a.earned+' pkt':'✕ Do powtórki';
+    const h=document.createElement('h3');h.textContent=(i+1)+'. '+a.q.q;
+    const own=document.createElement('p');own.textContent='Twoja odpowiedź: '+a.chosen;
+    const exp=document.createElement('p');exp.className='muted';exp.textContent=a.q.e;
+    const correct=document.createElement('p');correct.textContent='Poprawna odpowiedź: '+(a.q.type==='single'?a.q.o[a.q.a]:a.q.type==='tf'?(a.q.a?'Prawda':'Fałsz'):a.q.pairs.map(p=>p[0]+' → '+p[1]).join('; '));div.append(status,h,own);if(!a.ok)div.append(correct);div.append(exp);review.append(div);
+  });
+  $('resultTitle').focus();window.scrollTo(0,0);
+}
+
+function start(){index=0;answers=[];points=0;$('intro').hidden=true;$('result').hidden=true;$('quiz').hidden=false;render()}
+$('start').addEventListener('click',start);
+$('restart').addEventListener('click',start);
+$('check').addEventListener('click',check);
+$('next').addEventListener('click',()=>{if(!locked)return;if(index<bank.length-1){index++;render()}else finish()});
+
+</script></body></html>
