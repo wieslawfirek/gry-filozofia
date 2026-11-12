@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#172b3a"><title>Źródła poznania. Racjonalizm i empiryzm genetyczny — test po wykładzie 7</title>
+<style>
+:root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#172b3a;background:#f4f0e8}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 90% 0,#f7dca5,transparent 35%),#f4f0e8;min-height:100vh}main{max-width:920px;margin:auto;padding:30px 20px 70px}a{color:#8a4524}header{display:flex;justify-content:space-between;gap:15px;font-size:.9rem;margin-bottom:34px}.tag{text-transform:uppercase;letter-spacing:.14em;font-size:.74rem;font-weight:800;color:#8a4524}h1,h2,h3{font-family:Georgia,serif;line-height:1.2}h1{font-size:clamp(2rem,6vw,3.7rem);margin:14px 0}h2{font-size:clamp(1.35rem,4vw,2rem);margin:16px 0 24px}p{line-height:1.62}.muted{color:#52616b}.card{background:#fffdf9;border:1px solid #ded3c3;border-radius:24px;padding:clamp(22px,5vw,42px);box-shadow:0 16px 45px #172b3a10}.pills{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0}.pill,.difficulty{background:#f0e8dc;border-radius:30px;padding:8px 14px;font-size:.88rem}.difficulty{display:inline-block;margin-bottom:8px;font-weight:800}.difficulty.easy{background:#e5f2ea;color:#23603f}.difficulty.medium{background:#f8edcf;color:#7a5311}.difficulty.hard{background:#f4dfdc;color:#843d35}button,select{font:inherit}button{cursor:pointer;min-height:48px;border-radius:12px;border:2px solid transparent;padding:13px 19px}button:focus-visible,a:focus-visible,select:focus-visible{outline:3px solid #bd6537;outline-offset:3px}.primary{background:#172b3a;color:white;font-weight:760}.secondary{background:#eee5d8;color:#172b3a}.option{width:100%;text-align:left;background:white;border-color:#ded3c3;display:flex;gap:14px;align-items:center}.option:hover:not(:disabled){border-color:#a15a2f}.option.selected{background:#f8e6ce;border-color:#a15a2f}.option.correct{background:#e2f1e9;border-color:#28794e}.option.wrong{background:#fde7e4;border-color:#a53d31}.option:disabled{cursor:default;opacity:1}.letter{font-weight:800;background:#f0ebe4;border-radius:8px;padding:5px 10px;min-width:38px;text-align:center}.options{display:grid;gap:12px}.checks .option::before{content:"□";font-size:1.25rem;font-weight:800}.checks .option.selected::before{content:"☑"}.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}.meta{display:flex;justify-content:space-between;gap:12px;font-size:.9rem}.progress{height:8px;border-radius:10px;background:#e6ded2;overflow:hidden;margin:14px 0 26px}.progress span{display:block;height:100%;background:#b96639;transition:width .2s}.feedback{border-left:4px solid #b96639;padding:10px 16px;margin-top:22px;background:#f6efe5}.feedback p{margin:7px 0}.feedback ul{margin:9px 0 0;padding-left:20px;line-height:1.55}.match-grid{display:grid;gap:12px}.match-row{display:grid;grid-template-columns:minmax(120px,.75fr) minmax(190px,1.25fr);gap:12px;align-items:center;padding:12px;border:1px solid #e2d8ca;border-radius:14px;background:#fff}.match-left{font-weight:800}.match-row select{width:100%;min-height:46px;border:1px solid #cfc2b1;border-radius:10px;padding:8px;background:white;color:#172b3a}.match-row.good{border-color:#28794e;background:#eef8f2}.match-row.bad{border-color:#a53d31;background:#fff0ee}.big{font-size:clamp(3rem,12vw,5rem);font-family:Georgia,serif;margin:18px 0 0}.review{padding:20px 0;border-top:1px solid #ded3c3}.review h3{font-size:1rem;line-height:1.5;margin-bottom:8px}.review p{font-size:.95rem;margin:7px 0}.status{font-weight:800;color:#28794e}.status.miss{color:#a53d31}.round-note{color:#8a4524;font-weight:750;margin-top:-14px;margin-bottom:20px}footer{font-size:.8rem;color:#52616b;line-height:1.6;margin-top:25px}[hidden]{display:none!important}@media(max-width:620px){header{display:block}header span{display:block;margin-top:8px}.match-row{grid-template-columns:1fr}.card{border-radius:18px}}@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body><main>
+<header><a href="../">← Wszystkie gry</a><span>Wykład 7 · dr Wiesław Firek</span></header>
+
+<section id="intro" class="card">
+<div class="tag">Gra powtórkowa po wykładzie</div>
+<h1>Źródła poznania. Racjonalizm i empiryzm genetyczny</h1>
+<p class="muted">Platon, Kartezjusz, Chomsky, Locke i Kant. Pochodzenie pojęć i uzasadnianie wiedzy.</p>
+<div class="pills"><span class="pill">15 pytań</span><span class="pill">15 pkt do zdobycia</span><span class="pill">Bez limitu czasu</span></div>
+<p>W każdym pytaniu wybierz jedną odpowiedź. Wybierz odpowiedź i kliknij „Sprawdź odpowiedź”. Po każdym pytaniu zobaczysz wynik i wyjaśnienie. Każda poprawna odpowiedź to 1 punkt.</p>
+<button id="start" class="primary">Rozpocznij test →</button>
+</section>
+
+<section id="quiz" class="card" hidden>
+<div class="meta"><span id="counter"></span><span id="points"></span></div>
+<div class="progress" role="progressbar" aria-label="Postęp gry" aria-valuemin="0" aria-valuemax="15" aria-valuenow="0"><span id="bar"></span></div>
+<div id="difficulty" class="difficulty" hidden></div>
+<div id="kind" class="tag"></div>
+<h2 id="question" tabindex="-1"></h2>
+<p id="instruction" class="round-note"></p>
+<div id="answerArea"></div>
+<div id="feedback" class="feedback" role="status" aria-live="polite" hidden></div>
+<div class="actions"><button id="check" class="primary" disabled>Sprawdź odpowiedź</button><button id="next" class="primary" hidden>Następne zadanie →</button></div>
+</section>
+
+<section id="result" class="card" hidden>
+<div class="tag">Podsumowanie</div><h1 id="resultTitle" tabindex="-1">Twój wynik</h1>
+<div id="score" class="big"></div><p id="summary"></p><p id="repeat" class="muted"></p>
+<div class="actions"><button id="restart" class="primary">Rozwiąż ponownie</button></div>
+<h2>Przegląd zadań</h2><div id="review"></div>
+</section>
+
+<footer>Test służy powtórce po wykładzie 7. Wynik nie jest wysyłany ani zapisywany na serwerze.</footer>
+<noscript><p>Aby rozwiązać grę, włącz JavaScript w przeglądarce.</p></noscript>
+
+</main><script>
+'use strict';
+
+const levels={
+  easy:{label:'Łatwe · 1 pkt',cls:'easy',pts:1},
+  medium:{label:'Średnie · 2 pkt',cls:'medium',pts:2},
+  hard:{label:'Trudne · 3 pkt',cls:'hard',pts:3}
+};
+
+const bank=[
+  {
+    "level": "easy",
+    "type": "single",
+    "topic": "Akty i rezultaty poznawcze",
+    "q": "Student analizuje dowód twierdzenia Pitagorasa, a następnie zapisuje samo twierdzenie. Co w tym przykładzie jest aktem poznawczym, a co rezultatem poznawczym?",
+    "o": [
+      "Analizowanie dowodu jest aktem, a twierdzenie jest rezultatem.",
+      "Analizowanie dowodu jest rezultatem, a twierdzenie jest aktem.",
+      "Zarówno analizowanie dowodu, jak i twierdzenie są aktami poznawczymi.",
+      "Zarówno analizowanie dowodu, jak i twierdzenie są rezultatami poznawczymi."
+    ],
+    "a": 0,
+    "e": "Analizowanie to czynność umysłowa. Twierdzenie jest treścią, którą można zapisać i ocenić pod względem prawdziwości."
+  },
+  {
+    "level": "easy",
+    "type": "single",
+    "topic": "Geneza i uzasadnienie",
+    "q": "Jedna osoba pyta, skąd wzięło się w naszym umyśle pojęcie trójkąta. Druga pyta, czy do uzasadnienia twierdzenia o trójkątach potrzeba pomiarów. Czym różnią się te pytania?",
+    "o": [
+      "Pierwsze dotyczy tego, czy doświadczenie jest potrzebne do utworzenia pojęcia, a drugie tego, czy pomiary pomagają odkryć twierdzenie.",
+      "Pierwsze dotyczy tego, czy pojęcie trójkąta można zdefiniować bez odwołania do doświadczenia, a drugie tego, czy twierdzenie można uzasadnić bez pomiarów.",
+      "Pierwsze dotyczy tego, jak powstaje pojęcie, a drugie tego, jak pomiary wpływają na nasze przekonanie o prawdziwości twierdzenia.",
+      "Pierwsze dotyczy tego, jak powstaje pojęcie, a drugie tego, czy pomiary są potrzebne, by wykazać prawdziwość twierdzenia."
+    ],
+    "a": 3,
+    "e": "Geneza dotyczy powstania pojęcia. Uzasadnienie dotyczy podstaw uznania twierdzenia za prawdziwe, niezależnie od tego, jak ktoś na nie wpadł lub nabrał do niego przekonania."
+  },
+  {
+    "level": "easy",
+    "type": "single",
+    "topic": "Natywizm",
+    "q": "Ktoś zarzuca natywistom, że skoro noworodek nie potrafi wypowiedzieć żadnej zasady logicznej, wiedza wrodzona jest niemożliwa. Która odpowiedź najlepiej oddaje stanowisko natywisty?",
+    "o": [
+      "Wrodzone są tylko te zasady, które dziecko potrafi samodzielnie wypowiedzieć przed rozpoczęciem nauki.",
+      "Wrodzona może być struktura umysłu umożliwiająca tworzenie pewnych pojęć i sądów, nawet jeśli ujawnia się dopiero w toku rozwoju.",
+      "Zasada staje się wrodzona, kiedy dziecko zaczyna stosować ją automatycznie.",
+      "Wystarczy wykazać, że wszyscy dorośli przyjmują jakąś zasadę, by ustalić, że jest ona wrodzona."
+    ],
+    "a": 1,
+    "e": "Natywista może uznać za wrodzone uposażenie umysłu, którego skutki stają się widoczne w toku rozwoju."
+  },
+  {
+    "level": "easy",
+    "type": "single",
+    "topic": "Anamneza Platona",
+    "q": "W Platońskim ujęciu widok niedoskonałych figur może skłonić człowieka do rozważenia, czym jest idealny kwadrat. Jaką rolę odgrywa tu doświadczenie zmysłowe?",
+    "o": [
+      "Dostarcza gotowego pojęcia idealnego kwadratu, jeśli obserwacja jest dostatecznie dokładna.",
+      "Pozwala ustalić cechy idealnego kwadratu przez uśrednienie wyników pomiarów.",
+      "Daje okazję do przypomnienia sobie idei, którą dusza poznała przed połączeniem z ciałem.",
+      "Uzasadnia ogólne twierdzenia o kwadracie, jeśli obserwuje się wystarczająco wiele figur."
+    ],
+    "a": 2,
+    "e": "Anamneza to przypominanie sobie idei poznanych przez duszę przed połączeniem z ciałem. Widok figury może zapoczątkować przypominanie."
+  },
+  {
+    "level": "easy",
+    "type": "single",
+    "topic": "Wątpienie metodyczne",
+    "q": "Dlaczego Kartezjusz zawiesza uznanie przekonań, w które można choćby w niewielkim stopniu zwątpić?",
+    "o": [
+      "Chce wykazać, że pewność jest zawsze tylko subiektywnym poczuciem.",
+      "Szuka przekonania, które wytrzyma próbę wątpienia i posłuży za podstawę wiedzy.",
+      "Przyjmuje, że możliwość pomyłki wystarcza, by dowieść fałszywości każdego przekonania.",
+      "Chce zastąpić wszystkie dotychczasowe przekonania wnioskami z nowych obserwacji."
+    ],
+    "a": 1,
+    "e": "Kartezjusz wykorzystuje wątpienie jako metodę poszukiwania pewnego punktu wyjścia dla wiedzy."
+  },
+  {
+    "level": "easy",
+    "type": "single",
+    "topic": "Cogito",
+    "q": "Co Kartezjusz może uznać za pewne nawet wtedy, gdy bierze pod uwagę możliwość, że właśnie śni?",
+    "o": [
+      "Że obraz własnego ciała odpowiada rzeczywistości.",
+      "Że jego wspomnienia dotyczą zdarzeń, które rzeczywiście miały miejsce.",
+      "Że świat zewnętrzny istnieje dokładnie tak, jak go postrzega.",
+      "Że skoro właśnie wątpi lub myśli, to istnieje jako podmiot tego aktu."
+    ],
+    "a": 3,
+    "e": "Nawet jeśli treść myśli jest złudzeniem, sam akt wątpienia jest aktem myślenia i pozwala stwierdzić własne istnienie."
+  },
+  {
+    "level": "easy",
+    "type": "single",
+    "topic": "Chomsky i przyswajanie języka",
+    "q": "Dziecko poprawnie interpretuje strukturę zdania, z którą wcześniej się nie zetknęło. Jaką hipotezę wspiera taki przykład w argumentacji Chomsky’ego?",
+    "o": [
+      "Dziecko rodzi się ze znajomością zdań, których będzie używało w swoim języku.",
+      "Znajomość słów wystarcza, by ustalić strukturę każdego zdania.",
+      "Przyswajanie języka opiera się częściowo na wrodzonych strukturach, które pomagają dziecku wyjść poza usłyszane przykłady.",
+      "Dziecko rozumie nową konstrukcję dopiero po świadomym sformułowaniu reguły gramatycznej."
+    ],
+    "a": 2,
+    "e": "Chomsky odwołuje się do wrodzonego uposażenia, aby wyjaśnić, jak dziecko rozumie konstrukcje wykraczające poza przykłady dostępne w doświadczeniu."
+  },
+  {
+    "level": "easy",
+    "type": "single",
+    "topic": "Tabula rasa",
+    "q": "Jak należy rozumieć metaforę tabula rasa u Locke’a?",
+    "o": [
+      "Umysł ma zdolności poznawcze, a treść jego idei pochodzi z doświadczenia.",
+      "Umysł rodzi się z ogólnymi zasadami, a doświadczenie dostarcza tylko przykładów ich zastosowania.",
+      "Umysł jest początkowo pozbawiony zarówno idei, jak i zdolności do ich nabywania.",
+      "Umysł otrzymuje z doświadczenia wszystkie idee w gotowej postaci, także najbardziej złożone."
+    ],
+    "a": 0,
+    "e": "Locke odróżnia zdolności umysłu od treści, które umysł uzyskuje dzięki doświadczeniu zewnętrznemu i wewnętrznemu."
+  },
+  {
+    "level": "easy",
+    "type": "single",
+    "topic": "Refleksja u Locke’a",
+    "q": "Student słyszy melodię, a chwilę później zauważa, że próbuje ją sobie przypomnieć. Co w tym przykładzie Locke nazwałby refleksją?",
+    "o": [
+      "Usłyszenie melodii.",
+      "Rozpoznanie różnicy między dwoma dźwiękami podczas słuchania.",
+      "Porównanie głośności melodii z odgłosami dochodzącymi z ulicy.",
+      "Zauważenie własnej czynności przypominania sobie."
+    ],
+    "a": 3,
+    "e": "Refleksja jest doświadczeniem wewnętrznym. Jej przedmiotem są własne czynności umysłu, takie jak przypominanie."
+  },
+  {
+    "level": "easy",
+    "type": "single",
+    "topic": "Idee złożone u Locke’a",
+    "q": "Ktoś wyobraża sobie owoc o kształcie gruszki i smaku cytryny, chociaż nigdy takiego owocu nie spotkał. Jak Locke wyjaśniłby powstanie tej idei?",
+    "o": [
+      "Umysł przypomniał sobie wrodzoną ideę owocu, a doświadczenie nadało jej nazwę.",
+      "Umysł połączył elementy zaczerpnięte z wcześniejszych doświadczeń w jedną ideę złożoną.",
+      "Umysł wytworzył od podstaw idee kształtu i smaku bez udziału doświadczenia.",
+      "Umysł odtworzył gotową ideę prostą nabytą podczas obserwacji jednego owocu."
+    ],
+    "a": 1,
+    "e": "Umysł może łączyć treści pochodzące z odrębnych doświadczeń i tworzyć w ten sposób idee obiektów, których wcześniej nie napotkał."
+  },
+  {
+    "level": "easy",
+    "type": "single",
+    "topic": "Skrajny empiryzm metodologiczny",
+    "q": "Jakie stanowisko zajmuje ktoś, kto uważa, że zasady logiki i matematyki można uzasadnić wyłącznie jako uogólnienia oparte na doświadczeniu?",
+    "o": [
+      "Skrajny empiryzm metodologiczny.",
+      "Umiarkowany empiryzm metodologiczny w ujęciu z wykładu.",
+      "Umiarkowany racjonalizm metodologiczny.",
+      "Skrajny racjonalizm metodologiczny."
+    ],
+    "a": 0,
+    "e": "Skrajny empiryzm wymaga empirycznej podstawy uzasadnienia także dla logiki i matematyki."
+  },
+  {
+    "level": "easy",
+    "type": "single",
+    "topic": "Doświadczenie i wnioskowanie",
+    "q": "Na bezludnej plaży ktoś dostrzega zegarek i wnioskuje, że wcześniej przebywał tam człowiek. Co ten przykład ilustruje w omówieniu stanowisk umiarkowanych?",
+    "o": [
+      "Wniosek o obecności człowieka jest bezpośrednim spostrzeżeniem, tak samo jak widok zegarka.",
+      "Wniosek o obecności człowieka jest prawdziwy na mocy samej definicji zegarka.",
+      "Doświadczenie dostarcza przesłanki, a rozumowanie pozwala sformułować wniosek o czymś, czego bezpośrednio nie zaobserwowano.",
+      "Rozum może dojść do tego samego wniosku bez żadnej informacji o tym, co znaleziono na plaży."
+    ],
+    "a": 2,
+    "e": "Widok zegarka stanowi przesłankę empiryczną. Wcześniejsza obecność człowieka jest wnioskiem opartym na tej przesłance."
+  },
+  {
+    "level": "easy",
+    "type": "single",
+    "topic": "Sądy syntetyczne a priori",
+    "q": "Co Kant ma na myśli, uznając zdanie „7 + 5 = 12” za sąd syntetyczny a priori?",
+    "o": [
+      "Wynik jest zawarty w samym pojęciu dodawania, więc wystarczy objaśnić znaczenie słowa „suma”.",
+      "Ustalenie wyniku rozszerza poznanie, a jego uzasadnienie jest niezależne od obserwacji konkretnych przedmiotów.",
+      "Wynik jest pewny, ponieważ można go potwierdzić, wielokrotnie przeliczając przedmioty.",
+      "Wynik zależy od przyjętego zapisu liczb i z tego powodu jest prawdziwy na mocy definicji."
+    ],
+    "a": 1,
+    "e": "Według Kanta do wyniku dochodzimy, dokonując syntezy. Jego uzasadnienie nie wymaga obserwacji empirycznej."
+  },
+  {
+    "level": "easy",
+    "type": "single",
+    "topic": "Intersubiektywna weryfikowalność",
+    "q": "Badaczka sformułowała twierdzenie w sposób zrozumiały dla innych, ale nie podała żadnej metody, dzięki której mogliby ocenić jego prawdziwość. Który warunek poznania naukowego pozostaje niespełniony?",
+    "o": [
+      "Intersubiektywna komunikowalność.",
+      "Niezależność uzasadnienia od doświadczenia.",
+      "Powszechna zgoda co do wyniku.",
+      "Intersubiektywna weryfikowalność."
+    ],
+    "a": 3,
+    "e": "Zrozumiałe sformułowanie pozwala zakomunikować twierdzenie. Weryfikowalność wymaga, by inni mogli samodzielnie je sprawdzić."
+  },
+  {
+    "level": "easy",
+    "type": "single",
+    "topic": "Irracjonalizm i antyirracjonalizm",
+    "q": "Ktoś twierdzi, że osobiste przeżycie mistyczne może dawać wiedzę, choć inni nie mają możliwości samodzielnego sprawdzenia płynącego z niego wniosku. Którego sporu dotyczy przede wszystkim to stanowisko?",
+    "o": [
+      "Sporu natywizmu z empiryzmem genetycznym o to, czy istnieją idee wrodzone.",
+      "Sporu o to, czy sądy matematyczne rozszerzają wiedzę.",
+      "Sporu irracjonalizmu z antyirracjonalizmem o to, czy istnieją pozaracjonalne źródła poznania.",
+      "Sporu o to, czy twierdzenie naukowe jest aktem, czy rezultatem poznawczym."
+    ],
+    "a": 2,
+    "e": "W tym sporze chodzi o to, czy osobiste przeżycie mistyczne lub objawienie może być źródłem wiedzy."
+  }
+];
+
+const $=id=>document.getElementById(id);
+let index=0,selectedSingle=null,selectedMulti=new Set(),matchValues=[],locked=false,answers=[],points=0;
+const maxPoints=bank.reduce((s,q)=>s+levels[q.level].pts,0);
+
+function kindLabel(type){
+  return type==='single'?'Jedna poprawna odpowiedź':type==='tf'?'Prawda czy fałsz':type==='multi'?'Wybierz wszystkie poprawne':'Połącz w pary';
+}
+function shuffle(xs){const a=[...xs];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function sameSet(a,b){if(a.length!==b.length)return false;const x=[...a].sort((m,n)=>m-n),y=[...b].sort((m,n)=>m-n);return x.every((v,i)=>v===y[i]);}
+function matchCorrect(q){return q.pairs.every((p,i)=>matchValues[i]===p[1]);}
+function enableCheck(){
+  const q=bank[index];
+  let ready=false;
+  if(q.type==='single'||q.type==='tf') ready=selectedSingle!==null;
+  else if(q.type==='multi') ready=selectedMulti.size>0;
+  else if(q.type==='match') ready=q.pairs.every((_,i)=>Boolean(matchValues[i]));
+  $('check').disabled=!ready;
+}
+function resetState(){selectedSingle=null;selectedMulti=new Set();matchValues=[];locked=false;}
+
+function render(){
+  resetState();
+  const q=bank[index],lv=levels[q.level];
+  $('counter').textContent='Zadanie '+(index+1)+' z '+bank.length;
+  $('points').textContent='Punkty: '+points+' / '+maxPoints;
+  $('bar').style.width=(index/bank.length*100)+'%';
+  document.querySelector('.progress').setAttribute('aria-valuenow',index);
+  $('difficulty').textContent=lv.label;$('difficulty').className='difficulty '+lv.cls;
+  $('kind').textContent=kindLabel(q.type);
+  $('question').textContent=q.q;
+  $('instruction').textContent=q.type==='multi'?'Może być więcej niż jedna poprawna odpowiedź.':q.type==='match'?'W każdym wierszu wybierz pasujące pojęcie lub opis.':'';
+  $('feedback').hidden=true;$('feedback').replaceChildren();$('check').hidden=false;$('check').disabled=true;$('next').hidden=true;
+  const area=$('answerArea');area.replaceChildren();
+
+  if(q.type==='single'||q.type==='tf'){
+    const wrap=document.createElement('div');wrap.className='options';
+    if(q.type==='tf'){
+      const options=['Prawda','Fałsz'];
+      options.forEach((text,i)=>{
+        const b=document.createElement('button');b.className='option';b.type='button';b.setAttribute('aria-pressed','false');
+        const letter=document.createElement('span');letter.className='letter';letter.textContent=i===0?'P':'F';
+        const label=document.createElement('span');label.textContent=text;b.append(letter,label);
+        b.addEventListener('click',()=>{if(locked)return;selectedSingle=i===0;[...wrap.children].forEach(x=>{x.classList.remove('selected');x.setAttribute('aria-pressed','false')});b.classList.add('selected');b.setAttribute('aria-pressed','true');enableCheck()});
+        wrap.append(b);
+      });
+    }else{
+      const order=shuffle(q.o.map((_,i)=>i));
+      order.forEach((originalIndex,displayIndex)=>{
+        const b=document.createElement('button');b.className='option';b.type='button';b.setAttribute('aria-pressed','false');b.dataset.original=originalIndex;
+        const letter=document.createElement('span');letter.className='letter';letter.textContent='ABCD'[displayIndex];
+        const label=document.createElement('span');label.textContent=q.o[originalIndex];b.append(letter,label);
+        b.addEventListener('click',()=>{if(locked)return;selectedSingle=originalIndex;[...wrap.children].forEach(x=>{x.classList.remove('selected');x.setAttribute('aria-pressed','false')});b.classList.add('selected');b.setAttribute('aria-pressed','true');enableCheck()});
+        wrap.append(b);
+      });
+    }
+    area.append(wrap);
+  } else if(q.type==='multi'){
+    const wrap=document.createElement('div');wrap.className='options checks';
+    const order=shuffle(q.o.map((_,i)=>i));
+    order.forEach(originalIndex=>{
+      const b=document.createElement('button');b.className='option';b.type='button';b.setAttribute('aria-pressed','false');b.dataset.original=originalIndex;
+      const label=document.createElement('span');label.textContent=q.o[originalIndex];b.append(label);
+      b.addEventListener('click',()=>{if(locked)return;if(selectedMulti.has(originalIndex)){selectedMulti.delete(originalIndex);b.classList.remove('selected');b.setAttribute('aria-pressed','false')}else{selectedMulti.add(originalIndex);b.classList.add('selected');b.setAttribute('aria-pressed','true')}enableCheck()});
+      wrap.append(b);
+    });area.append(wrap);
+  } else {
+    const options=shuffle([...new Set(q.pairs.map(p=>p[1]))]);
+    const wrap=document.createElement('div');wrap.className='match-grid';
+    q.pairs.forEach((pair,i)=>{
+      const row=document.createElement('div');row.className='match-row';row.dataset.index=i;
+      const left=document.createElement('div');left.className='match-left';left.textContent=pair[0];
+      const sel=document.createElement('select');sel.setAttribute('aria-label','Dopasuj do: '+pair[0]);
+      const first=document.createElement('option');first.value='';first.textContent='— wybierz —';sel.append(first);
+      options.forEach(opt=>{const o=document.createElement('option');o.value=opt;o.textContent=opt;sel.append(o)});
+      sel.addEventListener('change',()=>{if(locked)return;matchValues[i]=sel.value;enableCheck()});
+      row.append(left,sel);wrap.append(row);
+    });area.append(wrap);
+  }
+  $('question').focus();window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function check(){
+  if(locked||$('check').disabled)return;
+  const q=bank[index],lv=levels[q.level];let ok=false;let chosen='';
+  if(q.type==='single'){ok=selectedSingle===q.a;chosen=q.o[selectedSingle]}
+  else if(q.type==='tf'){ok=selectedSingle===q.a;chosen=selectedSingle?'Prawda':'Fałsz'}
+  else if(q.type==='multi'){ok=sameSet([...selectedMulti],q.a);chosen=[...selectedMulti].map(i=>q.o[i]).join('; ')}
+  else {ok=matchCorrect(q);chosen=q.pairs.map((p,i)=>p[0]+' → '+(matchValues[i]||'—')).join('; ')}
+  locked=true;if(ok)points+=lv.pts;
+  answers.push({q:q,ok:ok,chosen:chosen,earned:ok?lv.pts:0});
+
+  const area=$('answerArea');
+  if(q.type==='single'||q.type==='tf'){
+    [...area.querySelectorAll('.option')].forEach((b,i)=>{
+      b.disabled=true;
+      const val=q.type==='tf'?(i===0):Number(b.dataset.original);
+      if(val===q.a)b.classList.add('correct');
+      else if(val===selectedSingle)b.classList.add('wrong');
+    });
+  } else if(q.type==='multi'){
+    [...area.querySelectorAll('.option')].forEach(b=>{
+      b.disabled=true;
+      const originalIndex=Number(b.dataset.original);
+      if(q.a.includes(originalIndex))b.classList.add('correct');
+      else if(selectedMulti.has(originalIndex))b.classList.add('wrong');
+    });
+  } else {
+    [...area.querySelectorAll('.match-row')].forEach((row,i)=>{
+      const sel=row.querySelector('select');sel.disabled=true;
+      row.classList.add(matchValues[i]===q.pairs[i][1]?'good':'bad');
+    });
+  }
+
+  const title=document.createElement('strong');title.textContent=ok?'Dobra odpowiedź · +'+lv.pts+(lv.pts===1?' pkt':' pkt'):'Tym razem bez punktów';
+  const correct=document.createElement('p');
+  if(q.type==='single')correct.textContent='Poprawna odpowiedź: '+q.o[q.a];
+  else if(q.type==='tf')correct.textContent='Poprawna odpowiedź: '+(q.a?'Prawda':'Fałsz');
+  else if(q.type==='multi')correct.textContent='Poprawne odpowiedzi: '+q.a.map(i=>q.o[i]).join('; ')+'.';
+  else correct.textContent='Poprawne połączenia: '+q.pairs.map(p=>p[0]+' → '+p[1]).join('; ')+'.';
+  const exp=document.createElement('p');exp.textContent=q.e;
+  $('feedback').replaceChildren(title,correct,exp);$('feedback').hidden=false;
+  $('points').textContent='Punkty: '+points+' / '+maxPoints;
+  $('bar').style.width=((index+1)/bank.length*100)+'%';document.querySelector('.progress').setAttribute('aria-valuenow',index+1);
+  $('check').hidden=true;$('next').hidden=false;$('next').textContent=index===bank.length-1?'Zobacz wynik →':'Następne zadanie →';$('next').focus();
+}
+
+function finish(){
+  $('quiz').hidden=true;$('result').hidden=false;
+  const pct=Math.round(points/maxPoints*100);
+  $('score').textContent=points+' / '+maxPoints;
+  $('summary').textContent=pct+'% możliwych punktów. '+(pct>=90?'Bardzo dobra znajomość pojęć i zależności.':pct>=70?'Dobra baza. Przejrzyj jeszcze zadania oznaczone jako „do powtórki”.':pct>=50?'Najważniejsze podstawy są już uchwycone, ale warto wrócić do pojęć i powiązań między nimi.':'Warto jeszcze raz powtórzyć materiał, szczególnie zagadnienia wskazane poniżej.');
+  const missed=answers.filter(a=>!a.ok).map(a=>a.q.topic);
+  $('repeat').textContent=missed.length?'Do powtórki: '+[...new Set(missed)].join(', ')+'.':'Wszystkie odpowiedzi są poprawne.';
+  const review=$('review');review.replaceChildren();
+  answers.forEach((a,i)=>{
+    const div=document.createElement('div');div.className='review';
+    const status=document.createElement('span');status.className='status'+(a.ok?'':' miss');status.textContent=a.ok?'✓ Poprawnie · '+a.earned+' pkt':'✕ Do powtórki';
+    const h=document.createElement('h3');h.textContent=(i+1)+'. '+a.q.q;
+    const own=document.createElement('p');own.textContent='Twoja odpowiedź: '+a.chosen;
+    const exp=document.createElement('p');exp.className='muted';exp.textContent=a.q.e;
+    const correct=document.createElement('p');correct.textContent='Poprawna odpowiedź: '+(a.q.type==='single'?a.q.o[a.q.a]:a.q.type==='tf'?(a.q.a?'Prawda':'Fałsz'):a.q.pairs.map(p=>p[0]+' → '+p[1]).join('; '));div.append(status,h,own);if(!a.ok)div.append(correct);div.append(exp);review.append(div);
+  });
+  $('resultTitle').focus();window.scrollTo(0,0);
+}
+
+function start(){index=0;answers=[];points=0;$('intro').hidden=true;$('result').hidden=true;$('quiz').hidden=false;render()}
+$('start').addEventListener('click',start);
+$('restart').addEventListener('click',start);
+$('check').addEventListener('click',check);
+$('next').addEventListener('click',()=>{if(!locked)return;if(index<bank.length-1){index++;render()}else finish()});
+
+</script></body></html>
